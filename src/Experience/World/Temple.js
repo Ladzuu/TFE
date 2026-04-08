@@ -1,5 +1,6 @@
 import * as THREE from 'three'
 import Experience from "../Experience.js"
+import gsap from 'gsap'
 
 export default class Temple
 {
@@ -40,8 +41,7 @@ export default class Temple
                 if(child instanceof THREE.Mesh)
                 {
                     // Light materials
-                    if (child.name === 'pathLightA' || child.name === 'pathLightB' || child.name === 'pathLightC' ||
-                        child.name === 'pathLightD' || child.name === 'pathLightE' || child.name === 'pathLightF') {
+                    if (child.name === 'pathLightA' || child.name === 'pathLightB' || child.name === 'pathLightC' || child.name === 'pathLightD' || child.name === 'pathLightE' || child.name === 'pathLightF') {
                         child.material = this.pathLightsMaterial
                     } else if (child.name === 'entranceLight') {
                         child.material = this.entranceLightMaterial
@@ -74,19 +74,24 @@ export default class Temple
             if (this.interactiveObjects && this.interactiveObjects.length > 0)
             {
                 this.raycasting.setFromCamera(this.experience.mouse, this.experience.camera.instance)
-
                 this.intersects = this.raycasting.intersectObjects(this.interactiveObjects)
 
-                // Reset scales
                 for (const object of this.interactiveObjects)
                 {
-                    object.scale.lerp(new THREE.Vector3(1, 1, 1), 0.1)
-                }
+                    const objHovered = this.intersects.length > 0 && this.intersects[0].object === object
+                    
+                    gsap.to(object.scale, {
+                        x: objHovered ? 1.2 : 1,
+                        y: objHovered ? 1.2 : 1,
+                        z: objHovered ? 1.2 : 1,
+                        duration: 0.3
+                    })
 
-                // Scale up hovered object
-                if (this.intersects.length > 0)
-                {
-                    this.intersects[0].object.scale.lerp(new THREE.Vector3(1.3, 1.3, 1.3), 0.1)
+                    if (objHovered && this.experience.objClicked)
+                    {
+                        console.log('Objet cliqué : ' + object.name)
+                        this.experience.objClicked = false
+                    }
                 }
             }
         }

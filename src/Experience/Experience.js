@@ -26,14 +26,6 @@ export default class Experience
         // Options
         this.canvas = canvas
 
-        // Mouse for raycasting
-        this.mouse = new THREE.Vector2()
-        window.addEventListener('mousemove', (event) =>
-        {
-            this.mouse.x = (event.clientX / this.sizes.width) * 2 - 1
-            this.mouse.y = - (event.clientY / this.sizes.height) * 2 + 1
-        })
-
         // Setup
         this.sizes = new Sizes()
         this.time = new Time()
@@ -54,6 +46,41 @@ export default class Experience
         {
             this.update()
         })
+
+        // Mouse events
+        this.mouse = new THREE.Vector2()
+        this.objClicked = false
+
+        window.addEventListener('mousemove', (event) =>
+        {
+            this.mouse.x = (event.clientX / this.sizes.width) * 2 - 1
+            this.mouse.y = - (event.clientY / this.sizes.height) * 2 + 1
+        })
+        
+        window.addEventListener('click', () =>
+        {
+            this.objClicked = true
+        })
+
+        // Switch camera buttons
+        this.arrowLeft = document.querySelector('.templeUI__switchCam--left')
+        this.arrowRight = document.querySelector('.templeUI__switchCam--right')
+
+        if(this.arrowLeft)
+        {
+            this.arrowLeft.addEventListener('click', () =>
+            {
+                this.camera.previousCamera()
+            })
+        }
+
+        if(this.arrowRight)
+        {
+            this.arrowRight.addEventListener('click', () =>
+            {
+                this.camera.nextCamera()
+            })
+        }
     }
 
     resize()
