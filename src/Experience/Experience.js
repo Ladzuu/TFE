@@ -62,7 +62,7 @@ export default class Experience
             this.objClicked = true
         })
 
-        // Switch camera buttons
+        // Switch camera
         this.arrowLeft = document.querySelector('.templeUI__switchCam--left')
         this.arrowRight = document.querySelector('.templeUI__switchCam--right')
 

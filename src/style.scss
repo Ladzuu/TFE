@@ -14,9 +14,7 @@ body
 
 /* ----- TEMPLE ----- */
 
-/* Canvas Temple */
-
-.temple
+.model__temple
 {
     position: fixed;
     top: 0;
@@ -24,18 +22,17 @@ body
     outline: none;
 }
 
-/* Text Appear - Torches */
-
-.textAppear--torches
+.templeText
 {
     position: fixed;
-    bottom: 20px;
+    bottom: 30px;
     left: 50%;
     transform: translateX(-50%);
     color: white;
     font-size: 24px;
     text-align: center;
-    width: 30%;
+    width: 50%;
+    opacity: 0;
 }
 
 .templeUI__switchCam

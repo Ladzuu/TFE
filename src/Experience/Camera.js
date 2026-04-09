@@ -19,9 +19,9 @@ export default class Camera
     setInstance()
     {
         this.instance = new THREE.PerspectiveCamera(
-            35, 
-            this.sizes.width / this.sizes.height, 
-            0.1, 
+            35,
+            this.sizes.width / this.sizes.height,
+            0.1,
             100
         )
         this.instance.position.set(20, 12, 15)
@@ -29,14 +29,17 @@ export default class Camera
         this.scene.add(this.instance)
 
         this.camPositions = [
-            { 
-                position: new THREE.Vector3(20, 12, 15), lookAt: new THREE.Vector3(0, 0, 0) 
+            {
+                position: new THREE.Vector3(20, 12, 15), 
+                lookAt: new THREE.Vector3(0, 0, 0) 
+            },
+            {
+                position: new THREE.Vector3(10, 5, -16), 
+                lookAt: new THREE.Vector3(0, 0, 0) 
             },
             { 
-                position: new THREE.Vector3(10, 5, -16), lookAt: new THREE.Vector3(0, 0, 0) 
-            },
-            { 
-                position: new THREE.Vector3(14, 4, 0), lookAt: new THREE.Vector3(0, 0, 0) 
+                position: new THREE.Vector3(14, 4, 0), 
+                lookAt: new THREE.Vector3(0, 0, 0) 
             }
         ]
 
