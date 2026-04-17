@@ -13,7 +13,7 @@ export default class Camera
         this.canvas = this.experience.canvas
 
         this.setInstance()
-        // this.setOrbitControls()
+        this.setOrbitControls()
     }
 
     setInstance()
@@ -90,6 +90,11 @@ export default class Camera
     {
         this.controls = new OrbitControls(this.instance, this.canvas)
         this.controls.enableDamping = true
+        this.controls.enablePan = false
+        this.controls.minPolarAngle = Math.PI / 2.7
+        this.controls.maxPolarAngle = Math.PI / 2.7
+        this.controls.minDistance = 15
+        this.controls.maxDistance = 40
     }
 
     resize()
@@ -100,6 +105,6 @@ export default class Camera
 
     update()
     {
-        // this.controls.update()
+        this.controls.update()
     }
 }

@@ -44,7 +44,7 @@ export default class Temple
                     // Light materials
                     if (child.name === 'pathLightA' || child.name === 'pathLightB' || child.name === 'pathLightC' || child.name === 'pathLightD' || child.name === 'pathLightE' || child.name === 'pathLightF') {
                         child.material = this.pathLightsMaterial
-                    } else if (child.name === 'entranceLight') {
+                    } else if (child.name === 'entranceLight' ) {
                         child.material = this.entranceLightMaterial
                     } else {
                         // Baked texture material
@@ -92,7 +92,7 @@ export default class Temple
                     {
                         if (object.name === "door")
                         {
-                            this.templeMessageItem.textContent = "Quelle intense lumière... Impossible de voir au travers. Qui sait ce qu'il y a derrière cette porte ?"
+                            this.templeMessageItem.textContent = "Quelle intense lumière... Impossible de voir au travers.\nQui sait ce qu'il y a derrière cette porte ?"
                             gsap.killTweensOf(this.templeMessageItem)
                             gsap.set(this.templeMessageItem, {
                                 opacity: 0,
@@ -114,7 +114,7 @@ export default class Temple
                                 }
                             })
                         } else if (object.name === "torch1") {
-                            this.templeMessageItem.textContent = "Cette stèle a l'air plus vieille que les autres. La lumière semble s'affaiblir. Étrange..."
+                            this.templeMessageItem.textContent = "Cette stèle a l'air plus vieille que les autres.\nLa lumière semble s'affaiblir. Étrange..."
                             gsap.killTweensOf(this.templeMessageItem)
                             gsap.set(this.templeMessageItem, {
                                 opacity: 0,
@@ -136,7 +136,7 @@ export default class Temple
                                 }
                             })
                         } else if (object.name === "torch2") {
-                            this.templeMessageItem.textContent = "Les flammes n'arrêtent pas de bouger. On jurerait que quelque chose veut en sortir."
+                            this.templeMessageItem.textContent = "Les flammes n'arrêtent pas de bouger.\nOn jurerait que quelque chose veut en sortir."
                             gsap.killTweensOf(this.templeMessageItem)
                             gsap.set(this.templeMessageItem, {
                                 opacity: 0,
@@ -158,7 +158,7 @@ export default class Temple
                                 }
                             })
                         } else if (object.name === "torch3") {
-                            this.templeMessageItem.textContent = "C'est la plus lumineuse des six torches. La stèle n'est pas du tout abimée. Elle a l'air récente."
+                            this.templeMessageItem.textContent = "C'est la plus lumineuse des six torches.\nLa stèle n'est pas du tout abimée. Elle a l'air récente."
                             gsap.killTweensOf(this.templeMessageItem)
                             gsap.set(this.templeMessageItem, {
                                 opacity: 0,
@@ -180,7 +180,7 @@ export default class Temple
                                 }
                             })
                         } else if (object.name === "torch4") {
-                            this.templeMessageItem.textContent = "La lumière est faible. La flamme est calme. Elle accompagne le silence."
+                            this.templeMessageItem.textContent = "La lumière est faible. La flamme est calme.\nElle accompagne le silence."
                             gsap.killTweensOf(this.templeMessageItem)
                             gsap.set(this.templeMessageItem, {
                                 opacity: 0,
@@ -202,7 +202,7 @@ export default class Temple
                                 }
                             })
                         } else if (object.name === "torch5") {
-                            this.templeMessageItem.textContent = "On raconte que ces stèles renferment les âmes des anciens gardiens de ce temple. Elles le protègent."
+                            this.templeMessageItem.textContent = "On raconte que ces stèles renferment les âmes\ndes anciens gardiens de ce temple. Elles le protègent."
                             gsap.killTweensOf(this.templeMessageItem)
                             gsap.set(this.templeMessageItem, {
                                 opacity: 0,
@@ -224,7 +224,7 @@ export default class Temple
                                 }
                             })
                         } else if (object.name === "torch6") {
-                            this.templeMessageItem.textContent = "Il n'y a rien ici. Rien d'autre que de simples stèles. De faibles lumières. Un lieu isolé du désert."
+                            this.templeMessageItem.textContent = "Il n'y a rien ici. Rien d'autre que de simples stèles.\nDe faibles lumières. Un lieu isolé du désert."
                             gsap.killTweensOf(this.templeMessageItem)
                             gsap.set(this.templeMessageItem, {
                                 opacity: 0,

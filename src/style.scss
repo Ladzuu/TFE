@@ -1,4 +1,6 @@
 /* ----- SETTINGS ----- */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+
 
 *
 {
@@ -25,14 +27,16 @@ body
 .templeText
 {
     position: fixed;
-    bottom: 30px;
+    bottom: 40px;
     left: 50%;
     transform: translateX(-50%);
     color: white;
-    font-size: 24px;
+    font-size: 21px;
     text-align: center;
-    width: 50%;
+    width: 600px;
     opacity: 0;
+    white-space: pre-wrap;
+    font-family: 'Playfair Display', serif;
 }
 
 .templeUI__switchCam
