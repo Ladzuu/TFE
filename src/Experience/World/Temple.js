@@ -60,7 +60,7 @@ export default class Temple
                 if (["torch1", "torch2", "torch3", "torch4", "torch5", "torch6", "door"].includes(child.name)) {
                     this.interactiveObjects.push(child)
                 }
-            })
+            }) 
         }
     }
 

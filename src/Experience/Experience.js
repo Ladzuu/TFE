@@ -62,7 +62,7 @@ export default class Experience
             this.objClicked = true
         })
 
-        // Switch camera
+        // Switch camera (Click arrows)
         this.arrowLeft = document.querySelector('.templeUI__switchCam--left')
         this.arrowRight = document.querySelector('.templeUI__switchCam--right')
 
@@ -81,6 +81,15 @@ export default class Experience
                 this.camera.nextCamera()
             })
         }
+
+        // Switch camera (Keyboard)
+        window.addEventListener('keydown', (event) => {
+            if (event.key === 'ArrowLeft') {
+                this.camera.previousCamera()
+            } else if (event.key === 'ArrowRight') {
+                this.camera.nextCamera()
+            }
+        })
     }
 
     resize()
