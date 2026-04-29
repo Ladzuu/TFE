@@ -21,5 +21,10 @@ export default [
         name: 'templeTexture',
         type: 'texture',
         path: 'textures/temple/templeTexture.jpg'
+    },
+    {
+        name: 'mapModel',
+        type: 'gltfModel',
+        path: 'models/map/map_test.glb'
     }
 ]

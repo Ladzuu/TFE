@@ -1,4 +1,5 @@
 import './style.scss'
 import Experience from './Experience/Experience.js'
 
-const experience = new Experience(document.querySelector('canvas.model__temple'))
+const canvas = document.querySelector('canvas')
+const experience = new Experience(canvas)

@@ -12,39 +12,77 @@ export default class Camera
         this.scene = this.experience.scene
         this.canvas = this.experience.canvas
 
+        this.setPageConfig()
         this.setInstance()
         this.setOrbitControls()
+    }
+
+    setPageConfig()
+    {
+        const canvas = this.canvas
+        this.isMapPage = canvas && canvas.classList.contains('model__map')
+        this.isTemplePage = canvas && canvas.classList.contains('model__temple')
+
+        if(this.isMapPage)
+        {
+            this.cameraSettings = {
+                fov: 45,
+                position: new THREE.Vector3(0, 22, 28),
+                lookAt: new THREE.Vector3(0, 0, 0),
+                minPolarAngle: Math.PI / 2.7,
+                maxPolarAngle: Math.PI / 2.7,
+                minDistance: 20,
+                maxDistance: 60,
+                enablePan: true
+            }
+        }
+        else
+        {
+            this.cameraSettings = {
+                fov: 35,
+                position: new THREE.Vector3(20, 12, 15),
+                lookAt: new THREE.Vector3(0, 0, 0),
+                minPolarAngle: Math.PI / 2.7,
+                maxPolarAngle: Math.PI / 2.7,
+                minDistance: 15,
+                maxDistance: 40,
+                enablePan: false
+            }
+        }
     }
 
     setInstance()
     {
         this.instance = new THREE.PerspectiveCamera(
-            35,
+            this.cameraSettings.fov,
             this.sizes.width / this.sizes.height,
             0.1,
             100
         )
-        this.instance.position.set(20, 12, 15)
-        this.instance.lookAt(0, 0, 0)
+        this.instance.position.copy(this.cameraSettings.position)
+        this.instance.lookAt(this.cameraSettings.lookAt)
         this.scene.add(this.instance)
 
-        this.camPositions = [
-            {
-                position: new THREE.Vector3(20, 12, 15), 
-                lookAt: new THREE.Vector3(0, 0, 0) 
-            },
-            {
-                position: new THREE.Vector3(10, 5, -16), 
-                lookAt: new THREE.Vector3(0, 0, 0) 
-            },
-            { 
-                position: new THREE.Vector3(14, 4, 0), 
-                lookAt: new THREE.Vector3(0, 0, 0) 
-            }
-        ]
+        if(this.isTemplePage)
+        {
+            this.camPositions = [
+                {
+                    position: new THREE.Vector3(20, 12, 15), 
+                    lookAt: new THREE.Vector3(0, 0, 0)
+                },
+                {
+                    position: new THREE.Vector3(10, 5, -16), 
+                    lookAt: new THREE.Vector3(0, 0, 0)
+                },
+                { 
+                    position: new THREE.Vector3(14, 4, 0), 
+                    lookAt: new THREE.Vector3(0, 0, 0)
+                }
+            ]
 
-        this.currentCamPosition = 0
-        this.camAnimation = false
+            this.currentCamPosition = 0
+            this.camAnimation = false
+        }
     }
 
     previousCamera()
@@ -90,11 +128,11 @@ export default class Camera
     {
         this.controls = new OrbitControls(this.instance, this.canvas)
         this.controls.enableDamping = true
-        this.controls.enablePan = false
-        this.controls.minPolarAngle = Math.PI / 2.7
-        this.controls.maxPolarAngle = Math.PI / 2.7
-        this.controls.minDistance = 15
-        this.controls.maxDistance = 40
+        this.controls.enablePan = this.cameraSettings.enablePan
+        this.controls.minPolarAngle = this.cameraSettings.minPolarAngle
+        this.controls.maxPolarAngle = this.cameraSettings.maxPolarAngle
+        this.controls.minDistance = this.cameraSettings.minDistance
+        this.controls.maxDistance = this.cameraSettings.maxDistance
     }
 
     resize()
