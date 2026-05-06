@@ -35,9 +35,7 @@ export default class Camera
                 maxDistance: 60,
                 enablePan: true
             }
-        }
-        else
-        {
+        } else {
             this.cameraSettings = {
                 fov: 35,
                 position: new THREE.Vector3(20, 12, 15),
@@ -57,7 +55,7 @@ export default class Camera
             this.cameraSettings.fov,
             this.sizes.width / this.sizes.height,
             0.1,
-            100
+            300
         )
         this.instance.position.copy(this.cameraSettings.position)
         this.instance.lookAt(this.cameraSettings.lookAt)
@@ -67,15 +65,15 @@ export default class Camera
         {
             this.camPositions = [
                 {
-                    position: new THREE.Vector3(20, 12, 15), 
+                    position: new THREE.Vector3(20, 12, 15),
                     lookAt: new THREE.Vector3(0, 0, 0)
                 },
                 {
-                    position: new THREE.Vector3(10, 5, -16), 
+                    position: new THREE.Vector3(10, 5, -16),
                     lookAt: new THREE.Vector3(0, 0, 0)
                 },
                 { 
-                    position: new THREE.Vector3(14, 4, 0), 
+                    position: new THREE.Vector3(14, 4, 0),
                     lookAt: new THREE.Vector3(0, 0, 0)
                 }
             ]

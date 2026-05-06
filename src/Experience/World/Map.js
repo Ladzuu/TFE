@@ -17,20 +17,12 @@ export default class Map
 
     setModel()
     {
-        if(!this.resource)
-        {
-            return
-        }
-
         this.model = this.resource.scene
         this.scene.add(this.model)
     }
 
     update()
     {
-        if(!this.model)
-        {
-            return
-        }
+
     }
 }

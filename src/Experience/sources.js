@@ -23,6 +23,16 @@ export default [
         path: 'textures/temple/templeTexture.jpg'
     },
     {
+        name: 'godIsland',
+        type: 'gltfModel',
+        path: 'models/island/god_island.glb'
+    },
+    {
+        name: 'islandTexture',
+        type: 'texture',
+        path: 'textures/island/bakedIsland.jpg'
+    },
+    {
         name: 'mapModel',
         type: 'gltfModel',
         path: 'models/map/map_test.glb'

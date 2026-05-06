@@ -1,6 +1,7 @@
 import Experience from '../Experience.js'
 import Environment from './Environment.js'
 import Temple from './Temple.js'
+import Island from './Island.js'
 import Map from './Map.js'
 
 export default class World
@@ -23,6 +24,10 @@ export default class World
             {
                 this.temple = new Temple()
             }
+            else if(canvas && canvas.classList.contains('model__island'))
+            {
+                this.island = new Island()
+            }
 
             this.environment = new Environment()
         })
@@ -38,6 +43,11 @@ export default class World
         if(this.temple)
         {
             this.temple.update()
+        }
+
+        if(this.island)
+        {
+            this.island.update()
         }
     }
 }
