@@ -22,6 +22,8 @@ export default class Camera
         const canvas = this.canvas
         this.isMapPage = canvas && canvas.classList.contains('model__map')
         this.isTemplePage = canvas && canvas.classList.contains('model__temple')
+        this.isIslandPage = canvas && canvas.classList.contains('model__island')
+        this.isVillagePage = canvas && canvas.classList.contains('model__village')
 
         if(this.isMapPage)
         {
@@ -80,12 +82,54 @@ export default class Camera
 
             this.currentCamPosition = 0
             this.camAnimation = false
+
+        } else if(this.isIslandPage)
+        {
+            this.camPositions = [
+                {
+                    position: new THREE.Vector3(20, 12, 15),
+                    lookAt: new THREE.Vector3(0, 0, 0)
+                },
+                {
+                    position: new THREE.Vector3(10, 5, -16),
+                    lookAt: new THREE.Vector3(0, 0, 0)
+                },
+                { 
+                    position: new THREE.Vector3(14, 4, 0),
+                    lookAt: new THREE.Vector3(0, 0, 0)
+                }
+            ]
+
+            this.currentCamPosition = 0
+            this.camAnimation = false
+            
+        } else if(this.isVillagePage)
+        {
+            this.camPositions = [
+                {
+                    position: new THREE.Vector3(20, 12, 15),
+                    lookAt: new THREE.Vector3(0, 0, 0)
+                },
+                {
+                    position: new THREE.Vector3(10, 5, -16),
+                    lookAt: new THREE.Vector3(0, 0, 0)
+                },
+                { 
+                    position: new THREE.Vector3(14, 4, 0),
+                    lookAt: new THREE.Vector3(0, 0, 0)
+                }
+            ]
+
+            this.currentCamPosition = 0
+            this.camAnimation = false
         }
     }
 
     previousCamera()
     {
-        if (this.camAnimation) return
+        if (this.camAnimation) {
+            return
+        }
         
         this.camAnimation = true
         this.previousPosition = (this.currentCamPosition - 1 + this.camPositions.length) % this.camPositions.length
@@ -94,7 +138,9 @@ export default class Camera
 
     nextCamera()
     {
-        if (this.camAnimation) return
+        if (this.camAnimation) {
+            return
+        }
         
         this.camAnimation = true
         this.nextPosition = (this.currentCamPosition + 1) % this.camPositions.length

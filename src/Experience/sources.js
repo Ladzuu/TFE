@@ -33,6 +33,16 @@ export default [
         path: 'textures/island/bakedIsland.jpg'
     },
     {
+        name: 'villageModel',
+        type: 'gltfModel',
+        path: 'models/village/village.glb'
+    },
+    {
+        name: 'villageTexture',
+        type: 'texture',
+        path: 'textures/village/bakedVillage.jpg'
+    },
+    {
         name: 'mapModel',
         type: 'gltfModel',
         path: 'models/map/map_test.glb'
