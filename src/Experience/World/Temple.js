@@ -12,7 +12,7 @@ export default class Temple
 
         this.raycasting = new THREE.Raycaster()
 
-        this.templeMessageItem = document.querySelector('.templeText')
+        this.templeMessageItem = document.querySelector('.sceneText')
 
         // Setup
         this.resource = this.ressources.items.templeModel
@@ -60,7 +60,7 @@ export default class Temple
                 if (["torch1", "torch2", "torch3", "torch4", "torch5", "torch6", "door"].includes(child.name)) {
                     this.interactiveObjects.push(child)
                 }
-            }) 
+            })
         }
     }
 
@@ -90,7 +90,7 @@ export default class Temple
 
                     if (objHovered && this.experience.objClicked)
                     {
-                        if (object.name === "door")
+                        if(object.name === "door")
                         {
                             this.templeMessageItem.textContent = "Quelle intense lumière... Impossible de voir au travers.\nQui sait ce qu'il y a derrière cette porte ?"
                             gsap.killTweensOf(this.templeMessageItem)
