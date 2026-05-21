@@ -45,6 +45,11 @@ export default [
     {
         name: 'mapModel',
         type: 'gltfModel',
-        path: 'models/map/map_test.glb'
+        path: 'models/map/mapResonance.glb'
+    },
+    {
+        name: 'mapTexture',
+        type: 'texture',
+        path: 'textures/map/bakedMap.jpg'
     }
 ]

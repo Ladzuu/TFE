@@ -64,6 +64,30 @@ export default class Temple
         }
     }
 
+    textAppear(text)
+    {
+        this.templeMessageItem.textContent = text
+        gsap.killTweensOf(this.templeMessageItem)
+        
+        gsap.set(this.templeMessageItem, { opacity: 0, y: 30 })
+        
+        gsap.to(this.templeMessageItem, {
+            opacity: 1,
+            y: 0,
+            duration: 1,
+            ease: "power4.out",
+            onComplete: () => {
+                gsap.to(this.templeMessageItem, {
+                    opacity: 0,
+                    y: 30,
+                    duration: 1,
+                    ease: "power4.in",
+                    delay: 6
+                })
+            }
+        })
+    }
+
     update()
     {
         if(this.model)
@@ -77,180 +101,53 @@ export default class Temple
                 this.raycasting.setFromCamera(this.experience.mouse, this.experience.camera.instance)
                 this.intersects = this.raycasting.intersectObjects(this.interactiveObjects)
 
+                const hoveredObject = this.intersects.length > 0 ? this.intersects[0].object : null
+
                 for (const object of this.interactiveObjects)
                 {
-                    const objHovered = this.intersects.length > 0 && this.intersects[0].object === object
+                    const isHovered = object === hoveredObject
                     
                     gsap.to(object.scale, {
-                        x: objHovered ? 1.2 : 1,
-                        y: objHovered ? 1.2 : 1,
-                        z: objHovered ? 1.2 : 1,
+                        x: isHovered ? 1.2 : 1,
+                        y: isHovered ? 1.2 : 1,
+                        z: isHovered ? 1.2 : 1,
                         duration: 0.3
                     })
+                }
 
-                    if (objHovered && this.experience.objClicked)
+                if (this.experience.objClicked)
+                {
+                    if (hoveredObject)
                     {
-                        if(object.name === "door")
+                        switch (hoveredObject.name)
                         {
-                            this.templeMessageItem.textContent = "Quelle intense lumière... Impossible de voir au travers.\nQui sait ce qu'il y a derrière cette porte ?"
-                            gsap.killTweensOf(this.templeMessageItem)
-                            gsap.set(this.templeMessageItem, {
-                                opacity: 0,
-                                y: 30
-                            })
-                            gsap.to(this.templeMessageItem, {
-                                opacity: 1,
-                                y: 0,
-                                duration: 1,
-                                ease: "power4.out",
-                                onComplete: () => {
-                                    gsap.to(this.templeMessageItem, {
-                                        opacity: 0,
-                                        y: 30,
-                                        duration: 1,
-                                        ease: "power4.in",
-                                        delay: 6
-                                    })
-                                }
-                            })
-                        } else if (object.name === "torch1") {
-                            this.templeMessageItem.textContent = "Cette stèle a l'air plus vieille que les autres.\nLa lumière semble s'affaiblir. Étrange..."
-                            gsap.killTweensOf(this.templeMessageItem)
-                            gsap.set(this.templeMessageItem, {
-                                opacity: 0,
-                                y: 30
-                            })
-                            gsap.to(this.templeMessageItem, {
-                                opacity: 1,
-                                y: 0,
-                                duration: 1,
-                                ease: "power4.out",
-                                onComplete: () => {
-                                    gsap.to(this.templeMessageItem, {
-                                        opacity: 0,
-                                        y: 30,
-                                        duration: 1,
-                                        ease: "power4.in",
-                                        delay: 6
-                                    })
-                                }
-                            })
-                        } else if (object.name === "torch2") {
-                            this.templeMessageItem.textContent = "Les flammes n'arrêtent pas de bouger.\nOn jurerait que quelque chose veut en sortir."
-                            gsap.killTweensOf(this.templeMessageItem)
-                            gsap.set(this.templeMessageItem, {
-                                opacity: 0,
-                                y: 30
-                            })
-                            gsap.to(this.templeMessageItem, {
-                                opacity: 1,
-                                y: 0,
-                                duration: 1,
-                                ease: "power4.out",
-                                onComplete: () => {
-                                    gsap.to(this.templeMessageItem, {
-                                        opacity: 0,
-                                        y: 30,
-                                        duration: 1,
-                                        ease: "power4.in",
-                                        delay: 6
-                                    })
-                                }
-                            })
-                        } else if (object.name === "torch3") {
-                            this.templeMessageItem.textContent = "C'est la plus lumineuse des six torches.\nLa stèle n'est pas du tout abimée. Elle a l'air récente."
-                            gsap.killTweensOf(this.templeMessageItem)
-                            gsap.set(this.templeMessageItem, {
-                                opacity: 0,
-                                y: 30
-                            })
-                            gsap.to(this.templeMessageItem, {
-                                opacity: 1,
-                                y: 0,
-                                duration: 1,
-                                ease: "power4.out",
-                                onComplete: () => {
-                                    gsap.to(this.templeMessageItem, {
-                                        opacity: 0,
-                                        y: 30,
-                                        duration: 1,
-                                        ease: "power4.in",
-                                        delay: 6
-                                    })
-                                }
-                            })
-                        } else if (object.name === "torch4") {
-                            this.templeMessageItem.textContent = "La lumière est faible. La flamme est calme.\nElle accompagne le silence."
-                            gsap.killTweensOf(this.templeMessageItem)
-                            gsap.set(this.templeMessageItem, {
-                                opacity: 0,
-                                y: 30
-                            })
-                            gsap.to(this.templeMessageItem, {
-                                opacity: 1,
-                                y: 0,
-                                duration: 1,
-                                ease: "power4.out",
-                                onComplete: () => {
-                                    gsap.to(this.templeMessageItem, {
-                                        opacity: 0,
-                                        y: 30,
-                                        duration: 1,
-                                        ease: "power4.in",
-                                        delay: 6
-                                    })
-                                }
-                            })
-                        } else if (object.name === "torch5") {
-                            this.templeMessageItem.textContent = "On raconte que ces stèles renferment les âmes\ndes anciens gardiens de ce temple. Elles le protègent."
-                            gsap.killTweensOf(this.templeMessageItem)
-                            gsap.set(this.templeMessageItem, {
-                                opacity: 0,
-                                y: 30
-                            })
-                            gsap.to(this.templeMessageItem, {
-                                opacity: 1,
-                                y: 0,
-                                duration: 1,
-                                ease: "power4.out",
-                                onComplete: () => {
-                                    gsap.to(this.templeMessageItem, {
-                                        opacity: 0,
-                                        y: 30,
-                                        duration: 1,
-                                        ease: "power4.in",
-                                        delay: 6
-                                    })
-                                }
-                            })
-                        } else if (object.name === "torch6") {
-                            this.templeMessageItem.textContent = "Il n'y a rien ici. Rien d'autre que de simples stèles.\nDe faibles lumières. Un lieu isolé du désert."
-                            gsap.killTweensOf(this.templeMessageItem)
-                            gsap.set(this.templeMessageItem, {
-                                opacity: 0,
-                                y: 30
-                            })
-                            gsap.to(this.templeMessageItem, {
-                                opacity: 1,
-                                y: 0,
-                                duration: 1,
-                                ease: "power4.out",
-                                onComplete: () => {
-                                    gsap.to(this.templeMessageItem, {
-                                        opacity: 0,
-                                        y: 30,
-                                        duration: 1,
-                                        ease: "power4.in",
-                                        delay: 6
-                                    })
-                                }
-                            })
+                            case "door":
+                                this.textAppear("Quelle intense lumière... Impossible de voir au travers.\nQui sait ce qu'il y a derrière cette porte ?")
+                                break
+                            case "torch1":
+                                this.textAppear("Cette stèle a l'air plus vieille que les autres.\nLa lumière semble s'affaiblir. Étrange...")
+                                break
+                            case "torch2":
+                                this.textAppear("Les flammes n'arrêtent pas de bouger.\nOn jurerait que quelque chose veut en sortir.")
+                                break
+                            case "torch3":
+                                this.textAppear("C'est la plus lumineuse des six torches.\nLa stèle n'est pas du tout abimée. Elle a l'air récente.")
+                                break
+                            case "torch4":
+                                this.textAppear("La lumière est faible. La flamme est calme.\nElle accompagne le silence.")
+                                break
+                            case "torch5":
+                                this.textAppear("On raconte que ces stèles renferment les âmes\ndes anciens gardiens de ce temple. Elles le protègent.")
+                                break
+                            case "torch6":
+                                this.textAppear("Il n'y a rien ici. Rien d'autre que de simples stèles.\nDe faibles lumières. Un lieu isolé du désert.")
+                                break
                         }
-                        
-                        this.experience.objClicked = false
                     }
+
+                    this.experience.objClicked = false
                 }
             }
         }
-    }
+    }    
 }

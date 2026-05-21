@@ -40,7 +40,7 @@ export default class Camera
         } else {
             this.cameraSettings = {
                 fov: 35,
-                position: new THREE.Vector3(20, 12, 15),
+                position: new THREE.Vector3(22, 15, 17),
                 lookAt: new THREE.Vector3(0, 0, 0),
                 minPolarAngle: Math.PI / 2.7,
                 maxPolarAngle: Math.PI / 2.7,
@@ -67,7 +67,7 @@ export default class Camera
         {
             this.camPositions = [
                 {
-                    position: new THREE.Vector3(20, 12, 15),
+                    position: new THREE.Vector3(22, 15, 17),
                     lookAt: new THREE.Vector3(0, 0, 0)
                 },
                 {
@@ -87,7 +87,7 @@ export default class Camera
         {
             this.camPositions = [
                 {
-                    position: new THREE.Vector3(20, 12, 15),
+                    position: new THREE.Vector3(22, 15, 17),
                     lookAt: new THREE.Vector3(0, 0, 0)
                 },
                 {
@@ -107,7 +107,7 @@ export default class Camera
         {
             this.camPositions = [
                 {
-                    position: new THREE.Vector3(20, 12, 15),
+                    position: new THREE.Vector3(22, 15, 17),
                     lookAt: new THREE.Vector3(0, 0, 0)
                 },
                 {
