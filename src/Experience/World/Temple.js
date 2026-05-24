@@ -50,15 +50,15 @@ export default class Temple
                         // Baked texture material
                         child.material = this.bakedMaterial
                     }
-                }
-            })
 
-            // Interactive objects
-            this.interactiveObjects = []
-            this.model.traverse((child) =>
-            {
-                if (["torch1", "torch2", "torch3", "torch4", "torch5", "torch6", "door"].includes(child.name)) {
-                    this.interactiveObjects.push(child)
+                    // Interactive objects
+                    this.interactiveObjects = []
+                    this.model.traverse((child) =>
+                    {
+                        if (["torch1", "torch2", "torch3", "torch4", "torch5", "torch6", "door"].includes(child.name)) {
+                            this.interactiveObjects.push(child)
+                        }
+                    })
                 }
             })
         }
