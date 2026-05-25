@@ -19,6 +19,20 @@ export default class Temple
 
         this.overlayLoading()
         this.setModel()
+        this.goBack()
+    }
+
+    goBack()
+    {
+        this.btnBack = document.querySelector('.btn__back')
+
+        if(this.btnBack)
+        {
+            this.btnBack.addEventListener('click', () =>
+            {
+                window.location.href = 'map.html'
+            })
+        }
     }
 
     overlayLoading()

@@ -21,6 +21,8 @@ export default class Ressources extends EventEmitter
         this.loadingBar = document.querySelector('.loading__assets--bar')
         this.loadingText = document.querySelector('.loading__assets--text')
         this.loadingPercentage = document.querySelector('.loading__assets--percentage')
+        this.arrowsContainer = document.querySelector('.templeUI__switchCam')
+        this.btnBack = document.querySelector('.btn__back')
 
         const randomLoadingText = [
             "Traversée du désert.",
@@ -61,6 +63,15 @@ export default class Ressources extends EventEmitter
                             onComplete: () =>
                             {
                                 this.loadingContainer.style.display = 'none'
+                                if(this.arrowsContainer)
+                                {
+                                    this.arrowsContainer.classList.remove('hidden')
+                                }
+
+                                if(this.btnBack)                                
+                                {
+                                    this.btnBack.classList.remove('hidden')
+                                }
                             }
                         })
                     }
@@ -94,6 +105,16 @@ export default class Ressources extends EventEmitter
 
     startLoading()
     {
+        if(this.arrowsContainer)
+        {
+            this.arrowsContainer.classList.add('hidden')
+        }
+
+        if(this.btnBack)
+        {
+            this.btnBack.classList.add('hidden')
+        }
+
         // Load each source
         for(const source of this.sources)
         {

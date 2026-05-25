@@ -19,6 +19,20 @@ export default class Island
 
         this.overlayLoading()
         this.setModel()
+        this.goBack()
+    }
+
+    goBack()
+    {
+        this.btnBack = document.querySelector('.btn__back')
+
+        if(this.btnBack)
+        {
+            this.btnBack.addEventListener('click', () =>
+            {
+                window.location.href = 'map.html'
+            })
+        }
     }
 
     overlayLoading()
@@ -71,7 +85,6 @@ export default class Island
             this.crystals = []
             this.pillars = []
             this.rocks = []
-            this.interactiveObjects = []
 
             this.model.traverse((child) =>
             {
@@ -99,6 +112,7 @@ export default class Island
                     }
 
                     // Interactive objects
+                    this.interactiveObjects = []
                     if(["pillar1", "pillar3", "pillar4", "pillar6", "pillar8", "pillar9", "pillar10", "crystalCenter", "rock4", "rock5"].includes(child.name)) {
                         this.interactiveObjects.push(child)
                     }   
