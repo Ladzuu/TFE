@@ -29,12 +29,12 @@ export default class Camera
         {
             this.cameraSettings = {
                 fov: 45,
-                position: new THREE.Vector3(0, 22, 28),
+                position: new THREE.Vector3(0, 30, 35),
                 lookAt: new THREE.Vector3(0, 0, 0),
                 minPolarAngle: Math.PI / 2.7,
                 maxPolarAngle: Math.PI / 2.7,
                 minDistance: 20,
-                maxDistance: 60,
+                maxDistance: 80,
                 enablePan: true
             }
         } else {

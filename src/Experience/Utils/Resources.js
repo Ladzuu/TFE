@@ -1,6 +1,7 @@
 import * as THREE from 'three'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
 import EventEmitter from "./EventEmitter"
+import gsap from 'gsap'
 
 export default class Ressources extends EventEmitter
 {
@@ -16,6 +17,23 @@ export default class Ressources extends EventEmitter
         this.toLoad = this.sources.length
         this.loaded = 0
 
+        this.loadingContainer = document.querySelector('.loading__assets')
+        this.loadingBar = document.querySelector('.loading__assets--bar')
+        this.loadingText = document.querySelector('.loading__assets--text')
+        this.loadingPercentage = document.querySelector('.loading__assets--percentage')
+
+        const randomLoadingText = [
+            "Traversée du désert.",
+            "Priez Osiris. Il vieille sur vous...",
+            "Une puissante énergie résonne dans la nuit.",
+            "Seth vous observe. Méfiez vous...",
+            "Gardez votre torche allumée, les ténèbres sont partout.",
+        ]
+
+        if(this.loadingText)        {
+            this.loadingText.textContent = randomLoadingText[Math.floor(Math.random() * randomLoadingText.length)]
+        }
+
         this.setLoaders()
         this.startLoading()
     }
@@ -23,8 +41,54 @@ export default class Ressources extends EventEmitter
     setLoaders()
     {
         this.loaders = {}
-        this.loaders.gltfLoader = new GLTFLoader()
-        this.loaders.textureLoader = new THREE.TextureLoader()
+        this.loaders.loadingManager = new THREE.LoadingManager(
+            // Loaded
+            () =>
+            {
+                gsap.delayedCall(0.5, () =>
+                {
+                    if(this.overlayMaterial)
+                    {
+                        gsap.to(this.overlayMaterial.uniforms.uAlpha, { duration: 2, value: 0, delay: 1.5 })
+                    }
+
+                    if(this.loadingContainer)
+                    {
+                        gsap.to(this.loadingContainer, { 
+                            duration: 0.5,
+                            opacity: 0,
+                            delay: 1,
+                            onComplete: () =>
+                            {
+                                this.loadingContainer.style.display = 'none'
+                            }
+                        })
+                    }
+
+                    if(this.loadingBar)
+                    {
+                        this.loadingBar.classList.add('ended')
+                        this.loadingBar.style.transform = ``
+                    }
+                })
+            },
+            // Progress
+            (itemUrl, itemsLoaded, itemsTotal) =>
+            {
+                this.progressRatio = itemsLoaded / itemsTotal
+                
+                if(this.loadingBar)                {
+                    this.loadingBar.style.transform = `scaleX(${this.progressRatio})`
+                }
+                if(this.loadingPercentage)
+                {
+                    const percentage = Math.round(this.progressRatio * 100)
+                    this.loadingPercentage.textContent = `${percentage} %`
+                }
+            }
+        )
+        this.loaders.gltfLoader = new GLTFLoader(this.loaders.loadingManager)
+        this.loaders.textureLoader = new THREE.TextureLoader(this.loaders.loadingManager)
         this.loaders.cubeTextureLoader = new THREE.CubeTextureLoader()
     }
 
