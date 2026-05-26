@@ -15,9 +15,23 @@ export default class Map
         // Setup
         this.resource = this.ressources.items.mapModel
 
+        this.goBack()
         this.overlayLoading()
         this.setModel()
         this.glowAnim()
+    }
+
+    goBack()
+    {
+        this.btnBack = document.querySelector('.btn__back')
+
+        if(this.btnBack)
+        {
+            this.btnBack.addEventListener('click', () =>
+            {
+                window.location.href = 'index.html'
+            })
+        }
     }
 
     overlayLoading()
@@ -130,7 +144,7 @@ export default class Map
             r: 0.8,
             g: 0.8,
             b: 0.8
-        }, 
+        },
         {
             r: 2.5,
             g: 2,

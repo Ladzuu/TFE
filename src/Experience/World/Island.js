@@ -20,6 +20,7 @@ export default class Island
         this.overlayLoading()
         this.setModel()
         this.goBack()
+        this.glowAnim()
     }
 
     goBack()
@@ -79,9 +80,11 @@ export default class Island
 
             // Materials
             this.bakedMaterial = new THREE.MeshBasicMaterial({ map: this.bakedTexture })
+            this.glowMaterial = new THREE.MeshBasicMaterial({ map: this.bakedTexture, color: new THREE.Color('#ffffff') })
             this.waterLightMaterial = new THREE.MeshBasicMaterial({ color: 0x009FFFFF })
             this.crystalLightMaterial = new THREE.MeshBasicMaterial({ color: 0x009FFFFF, side: THREE.DoubleSide })
 
+            this.interactiveObjects = []
             this.crystals = []
             this.pillars = []
             this.rocks = []
@@ -112,8 +115,8 @@ export default class Island
                     }
 
                     // Interactive objects
-                    this.interactiveObjects = []
                     if(["pillar1", "pillar3", "pillar4", "pillar6", "pillar8", "pillar9", "pillar10", "crystalCenter", "rock4", "rock5"].includes(child.name)) {
+                        child.material = this.glowMaterial
                         this.interactiveObjects.push(child)
                     }   
                 }
@@ -121,6 +124,50 @@ export default class Island
         }
 
         this.model.scale.setScalar(0.8)
+    }
+
+    glowAnim()
+    {
+        if(!this.glowMaterial) return
+
+        gsap.fromTo(this.glowMaterial.color, {
+            r: 0.8,
+            g: 0.8,
+            b: 0.8
+        }, 
+        {
+            r: 2.5,
+            g: 2,
+            b: 1.2,
+            duration: 1.5,
+            repeat: -1,
+            yoyo: true,
+            ease: "sine.inOut"
+        })
+    }
+
+    textAppear(text)
+    {
+        this.islandMessageItem.textContent = text
+        gsap.killTweensOf(this.islandMessageItem)
+        
+        gsap.set(this.islandMessageItem, { opacity: 0, y: 30 })
+        
+        gsap.to(this.islandMessageItem, {
+            opacity: 1,
+            y: 0,
+            duration: 1,
+            ease: "power4.out",
+            onComplete: () => {
+                gsap.to(this.islandMessageItem, {
+                    opacity: 0,
+                    y: 30,
+                    duration: 1,
+                    ease: "power4.in",
+                    delay: 6
+                })
+            }
+        })
     }
 
     update()
@@ -160,46 +207,60 @@ export default class Island
                 this.raycasting.setFromCamera(this.experience.mouse, this.experience.camera.instance)
                 this.intersects = this.raycasting.intersectObjects(this.interactiveObjects)
 
+                const hoveredObject = this.intersects.length > 0 ? this.intersects[0].object : null
+
                 for (const object of this.interactiveObjects)
                 {
-                    const objHovered = this.intersects.length > 0 && this.intersects[0].object === object
+                    const isHovered = object === hoveredObject
 
                     gsap.to(object.scale, {
-                        x: objHovered ? 1.2 : 1,
-                        y: objHovered ? 1.2 : 1,
-                        z: objHovered ? 1.2 : 1,
+                        x: isHovered ? 1.2 : 1,
+                        y: isHovered ? 1.2 : 1,
+                        z: isHovered ? 1.2 : 1,
                         duration: 0.3
                     })
+                }
 
-                    if (objHovered && this.experience.objClicked)
+                if (this.experience.objClicked)
+                {
+                    if(hoveredObject)
                     {
-                        if(object.name === 'crystalCenter')
+                        switch (hoveredObject.name)
                         {
-                            this.islandMessageItem.textContent = "Cette pierre... Quelle énergie démentielle !\nSerait-elle la cause de cette explosion ?"
-                            gsap.killTweensOf(this.islandMessageItem)
-                            gsap.set(this.islandMessageItem, {
-                                opacity: 0,
-                                y: 30
-                            })
-                            gsap.to(this.islandMessageItem, {
-                                opacity: 1,
-                                y: 0,
-                                duration: 1,
-                                ease: "power4.out",
-                                onComplete: () => {
-                                    gsap.to(this.islandMessageItem, {
-                                        opacity: 0,
-                                        y: 30,
-                                        duration: 1,
-                                        ease: "power4.in",
-                                        delay: 6
-                                    })
-                                }
-                            })
+                            case 'crystalCenter':
+                                this.textAppear("Cette pierre... Quelle énergie démentielle !\nSerait-elle la cause de cette explosion ?")
+                                break
+                            case 'pillar1':
+                                this.textAppear("Ce pilier semble être presque intact.\nC'est bien le seul restant...")
+                                break
+                            case 'pillar3':
+                                this.textAppear("Les dieux nous avaient mis en garde.\nIl est trop tard maintenant...")
+                                break
+                            case 'pillar4':
+                                this.textAppear("Si seulement nous avions prêté attention\nà leurs avertissements...")
+                                break
+                            case 'pillar6':
+                                this.textAppear("Des éclats de cristaux gravitent autour de la stèle.\nLa même réaction que les piliers...")
+                                break
+                            case 'pillar8':
+                                this.textAppear("Ce lieu servait de portail entre notre monde\net celui des dieux. Impossible de traverser désormais...")
+                                break
+                            case 'pillar9':
+                                this.textAppear("Il y a même des piliers enfouis dans le sol.\nC'est dire la puissance de l'explosion...")
+                                break
+                            case 'pillar10':
+                                this.textAppear("Tout n'est plus géré que par la magie.\n Plus rien n'est naturel ici...")
+                                break
+                            case 'rock4':
+                                this.textAppear("Des rochers gravitent autour de l'île.\nC'est à la fois fascinant et terrifiant...")
+                                break
+                            case 'rock5':
+                                this.textAppear("Cette île, détachée du sol, est jonchée de cristaux.\nElle est jonchée de cristaux.")
+                                break
                         }
-
-                        this.experience.objClicked = false
                     }
+
+                    this.experience.objClicked = false
                 }
             }
         }

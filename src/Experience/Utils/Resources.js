@@ -29,7 +29,7 @@ export default class Ressources extends EventEmitter
             "Priez Osiris. Il vieille sur vous...",
             "Une puissante énergie résonne dans la nuit.",
             "Seth vous observe. Méfiez vous...",
-            "Gardez votre torche allumée, les ténèbres sont partout.",
+            "Gardez votre torche allumée, les ténèbres sont partout."
         ]
 
         if(this.loadingText)        {
@@ -56,7 +56,7 @@ export default class Ressources extends EventEmitter
 
                     if(this.loadingContainer)
                     {
-                        gsap.to(this.loadingContainer, { 
+                        gsap.to(this.loadingContainer, {
                             duration: 0.5,
                             opacity: 0,
                             delay: 1,

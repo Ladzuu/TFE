@@ -20,6 +20,7 @@ export default class Temple
         this.overlayLoading()
         this.setModel()
         this.goBack()
+        this.glowAnim()
     }
 
     goBack()
@@ -79,6 +80,7 @@ export default class Temple
 
             // Materials
             this.bakedMaterial = new THREE.MeshBasicMaterial({ map: this.bakedTexture })
+            this.glowMaterial = new THREE.MeshBasicMaterial({ map: this.bakedTexture, color: new THREE.Color('#ffffff') })
             this.pathLightsMaterial = new THREE.MeshBasicMaterial({ color: 0xffffff })
             this.entranceLightMaterial = new THREE.MeshBasicMaterial({ color: 0xffffff, side: THREE.DoubleSide })
 
@@ -87,7 +89,7 @@ export default class Temple
                 if(child instanceof THREE.Mesh)
                 {
                     // Light materials
-                    if (child.name === 'pathLightA' || child.name === 'pathLightB' || child.name === 'pathLightC' || child.name === 'pathLightD' || child.name === 'pathLightE' || child.name === 'pathLightF') {
+                    if (child.name.startsWith('pathLight')) {
                         child.material = this.pathLightsMaterial
                     } else if (child.name === 'entranceLight' ) {
                         child.material = this.entranceLightMaterial
@@ -101,12 +103,33 @@ export default class Temple
                     this.model.traverse((child) =>
                     {
                         if (["torch1", "torch2", "torch3", "torch4", "torch5", "torch6", "door"].includes(child.name)) {
+                            child.material = this.glowMaterial
                             this.interactiveObjects.push(child)
                         }
                     })
                 }
             })
         }
+    }
+
+    glowAnim()
+    {
+        if(!this.glowMaterial) return
+
+        gsap.fromTo(this.glowMaterial.color, {
+            r: 0.8,
+            g: 0.8,
+            b: 0.8
+        }, 
+        {
+            r: 2.5,
+            g: 2,
+            b: 1.2,
+            duration: 1.5,
+            repeat: -1,
+            yoyo: true,
+            ease: "sine.inOut"
+        })
     }
 
     textAppear(text)
@@ -153,9 +176,9 @@ export default class Temple
                     const isHovered = object === hoveredObject
                     
                     gsap.to(object.scale, {
-                        x: isHovered ? 1.2 : 1,
-                        y: isHovered ? 1.2 : 1,
-                        z: isHovered ? 1.2 : 1,
+                        x: isHovered ? 1.15 : 1,
+                        y: isHovered ? 1.15 : 1,
+                        z: isHovered ? 1.15 : 1,
                         duration: 0.3
                     })
                 }

@@ -12,12 +12,15 @@ export default class Village
 
         this.raycasting = new THREE.Raycaster()
 
+        this.villageMessageItem = document.querySelector('.sceneText')
+
         // Setup
         this.resource = this.ressources.items.villageModel
 
         this.overlayLoading()
         this.setModel()
         this.goBack()
+        this.glowAnim()
     }
 
     goBack()
@@ -63,7 +66,6 @@ export default class Village
         this.ressources.overlayMaterial = this.overlayMaterial
     }
 
-
     setModel()
     {
         this.model = this.resource.scene
@@ -78,6 +80,7 @@ export default class Village
 
             // Materials
             this.bakedMaterial = new THREE.MeshBasicMaterial({ map: this.bakedTexture })
+            this.glowMaterial = new THREE.MeshBasicMaterial({ map: this.bakedTexture, color: new THREE.Color('#ffffff') })
             this.windowLightMaterial = new THREE.MeshBasicMaterial({ color: 0x00C8FFFF })
             this.potLightMaterial = new THREE.MeshBasicMaterial({ color: 0x00C8FFFF, side: THREE.DoubleSide })
 
@@ -86,7 +89,7 @@ export default class Village
                 if(child instanceof THREE.Mesh)
                 {
                     // Light materials
-                    if (child.name === 'doorLight' || child.name === 'doorLightUp' || child.name === 'window1' || child.name === 'window2' || child.name === 'window3' || child.name === 'window4' || child.name === 'window5' || child.name === 'window6' || child.name === 'windwo7' || child.name === 'window8' || child.name === 'window9' || child.name === 'windwo10' || child.name === 'window11' || child.name === 'window12' || child.name === 'windowTop') {
+                    if (child.name === 'doorLight' || child.name === 'doorLightUp' || child.name.startsWith('window') || child.name === 'windwo7' || child.name === 'windwo10') {
                         child.material = this.windowLightMaterial
                     } else if (child.name === 'potLight1' || child.name === 'potLight2' || child.name === 'potLight3') {
                         child.material = this.potLightMaterial
@@ -94,16 +97,139 @@ export default class Village
                         // Baked texture material
                         child.material = this.bakedMaterial
                     }
+
+                    // Interactive objects
+                    this.interactiveObjects = []
+                    this.model.traverse((child) =>
+                    {
+                        if (["pot1", "pot2", "pot3", "pot6", "pot7", "pot8", "pot9", "pot10", "doorWood", "woodBox1", "woodBox2"].includes(child.name)) {
+                            child.material = this.glowMaterial
+                            this.interactiveObjects.push(child)
+                        }
+                    })
                 }
             })
         }
+
+        this.model.rotation.y = 270 * (Math.PI / 180)
+    }
+
+    glowAnim()
+    {
+        if(!this.glowMaterial) return
+
+        gsap.fromTo(this.glowMaterial.color, {
+            r: 0.8,
+            g: 0.8,
+            b: 0.8
+        },
+        {
+            r: 2.5,
+            g: 2,
+            b: 1.2,
+            duration: 1.5,
+            repeat: -1,
+            yoyo: true,
+            ease: "sine.inOut"
+        })
+    }
+
+    textAppear(text)
+    {
+        this.villageMessageItem.textContent = text
+        gsap.killTweensOf(this.villageMessageItem)
+        
+        gsap.set(this.villageMessageItem, { opacity: 0, y: 30 })
+        
+        gsap.to(this.villageMessageItem, {
+            opacity: 1,
+            y: 0,
+            duration: 1,
+            ease: "power4.out",
+            onComplete: () => {
+                gsap.to(this.villageMessageItem, {
+                    opacity: 0,
+                    y: 30,
+                    duration: 1,
+                    ease: "power4.in",
+                    delay: 6
+                })
+            }
+        })
     }
 
     update()
     {
         if(this.model)
         {
-            this.model.position.y = -2 + Math.sin(this.experience.time.elapsed * 0.001 * 1.2) * 0.2
+            // Temple Animation
+            this.model.position.y = -1 + Math.sin(this.experience.time.elapsed * 0.001 * 1.2) * 0.2
+
+            // Raycasting
+            if (this.interactiveObjects && this.interactiveObjects.length > 0)
+            {
+                this.raycasting.setFromCamera(this.experience.mouse, this.experience.camera.instance)
+                this.intersects = this.raycasting.intersectObjects(this.interactiveObjects)
+
+                const hoveredObject = this.intersects.length > 0 ? this.intersects[0].object : null
+
+                for (const object of this.interactiveObjects)
+                {
+                    const isHovered = object === hoveredObject
+                    
+                    gsap.to(object.scale, {
+                        x: isHovered ? 1.15 : 1,
+                        y: isHovered ? 1.15 : 1,
+                        z: isHovered ? 1.15 : 1,
+                        duration: 0.3
+                    })
+                }
+
+                if (this.experience.objClicked)
+                {
+                    if (hoveredObject)
+                    {
+                        switch (hoveredObject.name)
+                        {
+                            case "pot1":
+                                this.textAppear("Cette pierre... Quelle énergie démentielle !\nSerait-elle la cause de cette explosion ?")
+                                break
+                            case "pot2":
+                                this.textAppear("Cette pierre... Quelle énergie démentielle !\nSerait-elle la cause de cette explosion ?")
+                                break
+                            case "pot3":
+                                this.textAppear("Cette pierre... Quelle énergie démentielle !\nSerait-elle la cause de cette explosion ?")
+                                break
+                            case "pot6":
+                                this.textAppear("Cette pierre... Quelle énergie démentielle !\nSerait-elle la cause de cette explosion ?")
+                                break
+                            case "pot7":
+                                this.textAppear("Cette pierre... Quelle énergie démentielle !\nSerait-elle la cause de cette explosion ?")
+                                break
+                            case "pot8":
+                                this.textAppear("Cette pierre... Quelle énergie démentielle !\nSerait-elle la cause de cette explosion ?")
+                                break
+                            case "pot9":
+                                this.textAppear("Cette pierre... Quelle énergie démentielle !\nSerait-elle la cause de cette explosion ?")
+                                break
+                            case "pot10":
+                                this.textAppear("Cette pierre... Quelle énergie démentielle !\nSerait-elle la cause de cette explosion ?")
+                                break
+                            case "doorWood":
+                                this.textAppear("Cette pierre... Quelle énergie démentielle !\nSerait-elle la cause de cette explosion ?")
+                                break
+                            case "woodBox1":
+                                this.textAppear("Cette pierre... Quelle énergie démentielle !\nSerait-elle la cause de cette explosion ?")
+                                break
+                            case "woodBox2":
+                                this.textAppear("Cette pierre... Quelle énergie démentielle !\nSerait-elle la cause de cette explosion ?")
+                                break
+                        }
+                    }
+
+                    this.experience.objClicked = false
+                }
+            }
         }
     }
 }
