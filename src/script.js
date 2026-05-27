@@ -1,3 +1,6 @@
+"use strict";
+
+import gsap from 'gsap'
 import './style.scss'
 import EventEmitter from './Experience/Utils/EventEmitter.js'
 import Ressources from './Experience/Utils/Resources.js'
