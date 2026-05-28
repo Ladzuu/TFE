@@ -1,8 +1,11 @@
 "use strict"
 
 import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+gsap.registerPlugin(ScrollTrigger);
 import * as THREE from 'three'
 import './style.scss'
+import { element } from 'three/tsl';
 
 // ------- NAVIGATION -------
 const menu = document.querySelector(".nav__mb")
@@ -76,26 +79,104 @@ if(menuButton && menu)
     })
 }
 
-// ------- PYRAMID HOME -------
+// ------- MAIN -------
+const quotes = 
+[
+    '« Ils me dégoûtent… Je veux les voir morts. »',
+    '« Ils sont si fragiles… Ce seront eux la clé ! »',
+    '« Chaque mot a des conséquences, le silence aussi. »',
+    '« Osiris… quel idiot tu fais. Il est trop tard ! »',
+    '« Étrange… mais sans importance. »',
+    '« Ces faibles humains… Ils ne méritent pas ce pouvoir. »',
+    '« Enfin… L’Égypte est à moi. À moi ! »',
+    '« Ils ont peur… Qu’ils restent cachés dans leur royaume ! »',
+    '« J’offre une nouvelle destinée… Le chaos. »'
+]
+
+const quotesItems = document.querySelectorAll('.context__content--quote')
+
+quotesItems.forEach((el, i) =>
+{
+    if(quotes[i])
+    {
+        const hieroglyphsBase = el.textContent
+        
+        ScrollTrigger.create({
+            trigger: el,
+            start: "top 40%",
+            end: "bottom 80%",
+            onEnter: () => {
+                gsap.timeline()
+                    .to(el, {
+                        opacity: 0,
+                        duration: 0.3,
+                        ease: "power1.in"
+                    })
+                    .to(el, {
+                        opacity: 1, 
+                        duration: 0.5, 
+                        ease: "power1.out",
+                        onStart: () => { el.textContent = quotes[i] } 
+                    })
+            },
+            onLeaveBack: () => {
+                gsap.timeline()
+                    .to(el, {
+                        opacity: 0,
+                        duration: 0.3,
+                        ease: "power1.in"
+                    })
+                    .to(el, {
+                        opacity: 1, 
+                        duration: 0.5, 
+                        ease: "power1.out",
+                        onStart: () => { el.textContent = hieroglyphsBase } 
+                    })
+            },
+            onLeave: () => {
+                el.textContent = hieroglyphsBase
+            }
+        })
+    }
+})
+
+
+// ------- DECORATION HOME -------
 const canvas = document.querySelector('.section__hero--canvas')
 const scene = new THREE.Scene()
 
 const camera = new THREE.PerspectiveCamera(45, 1, 0.1, 100)
-camera.position.z = 4
+camera.position.z = 7
 
 const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true })
-renderer.setSize(200, 200)
+renderer.setSize(300, 300)
 
-const geometry = new THREE.ConeGeometry(1, 1.6, 4)
+// Pyramids
+const geometry = new THREE.ConeGeometry(1, 1.7, 4)
 const material = new THREE.MeshBasicMaterial({ color: 0x1e1e1e, wireframe: true })
-const pyramid = new THREE.Mesh(geometry, material)
-scene.add(pyramid)
+const pyramidHeader = new THREE.Mesh(geometry, material)
+pyramidHeader.rotation.x = 0.15
 
-pyramid.rotation.x = 0.15
+// Circles
+const circleBig = new THREE.RingGeometry(2.4, 2.7, 32)
+const circleMid = new THREE.RingGeometry(1.1, 1.4, 32)
+const circleMaterial = new THREE.MeshBasicMaterial({ color: 0xff7e46, wireframe: true, side: THREE.DoubleSide })
+const circleHeaderBig = new THREE.Mesh(circleBig, circleMaterial)
+const circleHeaderMid = new THREE.Mesh(circleMid, circleMaterial)
 
-function animate() {
+scene.add(pyramidHeader, circleHeaderBig, circleHeaderMid)
+
+circleHeaderBig.rotation.x = 1.9
+circleHeaderBig.position.y = -0.5
+circleHeaderMid.rotation.x = 1.9
+circleHeaderMid.position.y = -1
+
+function animate() 
+{
     requestAnimationFrame(animate)
-    pyramid.rotation.y += 0.02
+    pyramidHeader.rotation.y += 0.02
+    circleHeaderBig.rotation.z += -0.02
+    circleHeaderMid.rotation.z += 0.02
     renderer.render(scene, camera)
 }
 animate()

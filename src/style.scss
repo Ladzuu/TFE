@@ -223,6 +223,7 @@ body
     width: 100%;
     height: 100vh;
     padding: 0 20px;
+    margin-bottom: 240px;
     box-sizing: border-box;
     display: flex;
     justify-content: center;
@@ -237,8 +238,6 @@ body
         flex-direction: column;
 
         &--canvas {
-            width: 200px;
-            height: 200px;
             margin: 0;
         }
 
@@ -261,7 +260,7 @@ body
             width: 300px;
             font-size: 1.5rem;
             font-style: italic;
-            padding-bottom: 160px;
+            padding-bottom: 120px;
         }
 
         &--btnStart {
@@ -286,9 +285,38 @@ body
 
 /* MAIN */
 .main {
-    padding: 20px;
+    padding: 0 20px;
+    margin: 0;
 
+    .section__context {
+        width: 100%;
 
+        .context__content {
+            max-width: 400px;
+            height: auto;
+            padding-bottom: 160px;
+
+            &--text {
+                font-family: var(--dialogues);
+                line-height: 1.4;
+                font-weight: 400;
+                padding-bottom: 24px;
+                font-size: 1rem;
+            }
+
+            &--quote {
+                font-size: 1.125rem;
+                font-family: var(--dialogues);
+                min-height: 2.5rem;
+                color: var(--quaternary-color);
+                font-style: italic;
+
+                &.glitchEffect {
+                    text-shadow: 0 0 8px rgba(var(--quaternary-color), 0.8);
+                }
+            }
+        }
+    }
 }
 
 /* ----- TEMPLE ----- */
