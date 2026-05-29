@@ -23,16 +23,24 @@ export default class Ressources extends EventEmitter
         this.loadingPercentage = document.querySelector('.loading__assets--percentage')
         this.arrowsContainer = document.querySelector('.templeUI__switchCam')
         this.btnBack = document.querySelector('.btn__back')
+        this.musicBtn = document.querySelector('.musicBtn')
 
         const randomLoadingText = [
             "Traversée du désert.",
-            "Priez Osiris. Il vieille sur vous...",
+            "Priez Osiris. Il vieille sur vous.",
             "Une puissante énergie résonne dans la nuit.",
-            "Seth vous observe. Méfiez vous...",
-            "Gardez votre torche allumée, les ténèbres sont partout."
+            "Seth vous observe. Méfiez vous.",
+            "Gardez votre torche allumée, les ténèbres sont partout.",
+            "Chaque mot a des conséquences, chaque silence également.",
+            "Anoth va résoudre ce problème, j'en suis sûr.",
+            "Ne traversez pas le désert de nuit, jamais.",
+            "La Ligue a ses propres règles. Ils haïssent les Éveillés.",
+            "Les Éveillés sont notre dernier espoir. Seth doit tomber.",
+            "Les fils de l'Oasis prônent la paix et vénèrent les dieux."
         ]
 
-        if(this.loadingText)        {
+        if(this.loadingText)
+        {
             this.loadingText.textContent = randomLoadingText[Math.floor(Math.random() * randomLoadingText.length)]
         }
 
@@ -47,7 +55,7 @@ export default class Ressources extends EventEmitter
             // Loaded
             () =>
             {
-                gsap.delayedCall(0.5, () =>
+                gsap.delayedCall(1.2, () =>
                 {
                     if(this.overlayMaterial)
                     {
@@ -71,6 +79,11 @@ export default class Ressources extends EventEmitter
                                 if(this.btnBack)                                
                                 {
                                     this.btnBack.classList.remove('hidden')
+                                }
+
+                                if(this.musicBtn)
+                                {
+                                    this.musicBtn.classList.remove('hidden')
                                 }
                             }
                         })
@@ -113,6 +126,11 @@ export default class Ressources extends EventEmitter
         if(this.btnBack)
         {
             this.btnBack.classList.add('hidden')
+        }
+
+        if(this.musicBtn)
+        {
+            this.musicBtn.classList.add('hidden')
         }
 
         // Load each source

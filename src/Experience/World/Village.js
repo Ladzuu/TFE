@@ -21,6 +21,7 @@ export default class Village
         this.setModel()
         this.goBack()
         this.glowAnim()
+        this.musicBackground()
     }
 
     goBack()
@@ -32,6 +33,30 @@ export default class Village
             this.btnBack.addEventListener('click', () =>
             {
                 window.location.href = 'map.html'
+            })
+        }
+    }
+
+    musicBackground()
+    {
+        this.audio = document.querySelector('.musicPage')
+        this.musicBtn = document.querySelector('.musicBtn')
+
+        if(this.audio && this.musicBtn)
+        {
+            this.audio.volume = 0.1
+
+            this.musicBtn.addEventListener('click', () => {
+                if(this.audio.paused)
+                {
+                    this.audio.play()
+                    .then(() => {
+                        this.musicBtn.classList.add('isPlaying')
+                    })
+                } else {
+                    this.audio.pause()
+                    this.musicBtn.classList.remove('isPlaying')
+                }
             })
         }
     }
@@ -192,37 +217,37 @@ export default class Village
                         switch (hoveredObject.name)
                         {
                             case "pot1":
-                                this.textAppear("Cette pierre... Quelle énergie démentielle !\nSerait-elle la cause de cette explosion ?")
+                                this.textAppear("Ce sont de simples pots.\nSûrement destinés au rangement ?")
                                 break
                             case "pot2":
-                                this.textAppear("Cette pierre... Quelle énergie démentielle !\nSerait-elle la cause de cette explosion ?")
+                                this.textAppear("La personne qui habite ici doit être assez\noccupée. Elle ferait bien de ranger.")
                                 break
                             case "pot3":
-                                this.textAppear("Cette pierre... Quelle énergie démentielle !\nSerait-elle la cause de cette explosion ?")
+                                this.textAppear("Ce pot est plein d'objets en tous genres.\nAucun n'a de valeur...")
                                 break
                             case "pot6":
-                                this.textAppear("Cette pierre... Quelle énergie démentielle !\nSerait-elle la cause de cette explosion ?")
+                                this.textAppear("Il y a de la lumière à l'intérieur.\nPourtant il n'y a personne ici...")
                                 break
                             case "pot7":
-                                this.textAppear("Cette pierre... Quelle énergie démentielle !\nSerait-elle la cause de cette explosion ?")
+                                this.textAppear("Il y a un deuxième étage.\nUne autre personne ? Cette maison serait...")
                                 break
                             case "pot8":
-                                this.textAppear("Cette pierre... Quelle énergie démentielle !\nSerait-elle la cause de cette explosion ?")
+                                this.textAppear("Ces trois pots... Ils ont quelque chose\nde différents des autres.")
                                 break
                             case "pot9":
-                                this.textAppear("Cette pierre... Quelle énergie démentielle !\nSerait-elle la cause de cette explosion ?")
+                                this.textAppear("Cette lumière bleue intense...\nCela me rappelle quelque chose.")
                                 break
                             case "pot10":
-                                this.textAppear("Cette pierre... Quelle énergie démentielle !\nSerait-elle la cause de cette explosion ?")
+                                this.textAppear("Anoth et Kahaz en parlaient...\nCes cristaux viendraient de la catastrophe.")
                                 break
                             case "doorWood":
-                                this.textAppear("Cette pierre... Quelle énergie démentielle !\nSerait-elle la cause de cette explosion ?")
+                                this.textAppear("Une maison au milieu du désert...\nÀ qui peut elle bien appartenir ?")
                                 break
                             case "woodBox1":
-                                this.textAppear("Cette pierre... Quelle énergie démentielle !\nSerait-elle la cause de cette explosion ?")
+                                this.textAppear("Cette caisse est enfoncée dans le sol.\nCe lieu a bel et bien l'air abandonné.")
                                 break
                             case "woodBox2":
-                                this.textAppear("Cette pierre... Quelle énergie démentielle !\nSerait-elle la cause de cette explosion ?")
+                                this.textAppear("C'est peut être le dernier village aussi calme.\nTous les autres sont détruits.")
                                 break
                         }
                     }

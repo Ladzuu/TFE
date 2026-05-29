@@ -2,25 +2,75 @@
 @import './styles/_type';
 @import './styles/_variables';
 
-*
-{
+* {
     margin: 0;
     padding: 0;
 }
 
 html,
-body
-{
+body {
     overflow-x: hidden;
     overflow-y: auto;
 }
 
-body
-{
+body {
     background-color: var(--secondary-color);
 }
 
 /* ----- GLOBAL ----- */
+
+/* CURSOR */
+
+.cursor__center {
+    display: none;
+}
+
+.cursor__outline {
+    display: none;
+}
+
+/* AUDIO */
+.musicBtn {
+    position: fixed;
+    top: 27px;
+    left: 25px;
+    z-index: 1005;
+    background-color: transparent;
+    opacity: 1;
+    border: none;
+    cursor: pointer;
+
+    &.hidden {
+        opacity: 0;
+        pointer-events: none;
+    }
+    
+    .musicIcon__on {
+        display: none;
+        z-index: 11111;
+        width: 27px;
+        height: 27px;
+        color: var(--quaternary-color);
+    }
+
+    .musicIcon__off {
+        display: block;
+        z-index: 11111;
+        width: 27px;
+        height: 27px;
+        color: var(--quaternary-color);
+    }
+
+    &.isPlaying {
+        .musicIcon__on {
+            display: block;
+        }
+
+        .musicIcon__off {
+            display: none;
+        }
+    }
+}
 
 /* LOADING SCREEN (3D Scenes) */
 
@@ -85,7 +135,7 @@ body
         display: block;
         width: 100%;
         height: 2px;
-        background: var(--secondary-color);
+        background: var(--quaternary-color);
         position: absolute;
         transition: all 0.3s ease;
     }
@@ -252,7 +302,7 @@ body
             font-size: 3.6rem;
             text-transform: uppercase;
             margin: 0;
-            padding: 32px 0 16px 0;
+            padding: 24px 0 16px 0;
         }
 
         &--text {
@@ -260,7 +310,8 @@ body
             width: 300px;
             font-size: 1.5rem;
             font-style: italic;
-            padding-bottom: 120px;
+            padding-bottom: 80px;
+            color: var(--secondary-color);
         }
 
         &--btnStart {
@@ -288,6 +339,24 @@ body
     padding: 0 20px;
     margin: 0;
 
+    .section__intro {
+        width: 100%;
+        
+
+        &--title {
+            font-family: var(--dialogues);
+            color: var(--secondary-color);
+            width: 300px;
+            font-size: 1.313rem;
+            font-style: italic;
+            padding-bottom: 80px;
+        }
+
+        .colorLetter {
+            color: var(--quaternary-color);
+        }
+    }
+
     .section__context {
         width: 100%;
 
@@ -298,6 +367,7 @@ body
 
             &--text {
                 font-family: var(--dialogues);
+                color: var(--secondary-color);
                 line-height: 1.4;
                 font-weight: 400;
                 padding-bottom: 24px;
@@ -317,20 +387,22 @@ body
             }
         }
     }
+
+    .section__goMap {
+        width: 100%;
+    }
 }
 
 /* ----- TEMPLE ----- */
 
-.model__temple
-{
+.model__temple {
     position: fixed;
     top: 0;
     left: 0;
     outline: none;
 }
 
-.sceneText
-{
+.sceneText {
     position: fixed;
     bottom: 40px;
     left: 50%;
@@ -346,8 +418,7 @@ body
     
 }
 
-.templeUI__switchCam
-{
+.templeUI__switchCam {
     position: fixed;
     top: 40px;
     left: 50%;
@@ -373,11 +444,10 @@ body
     }
 }
 
-.btn__back
-{
+.btn__back {
     position: fixed;
-    top: 40px;
-    left: 80px;
+    top: 25px;
+    right: 20px;
     width: 25px;
     height: 25px;
     cursor: pointer;
@@ -394,8 +464,7 @@ body
 }
 
 /* ----- ISLAND ----- */
-.model__island
-{
+.model__island {
     position: fixed;
     top: 0;
     left: 0;
@@ -403,8 +472,7 @@ body
 }
 
 /* ----- VILLAGE ----- */
-.model__village
-{
+.model__village {
     position: fixed;
     top: 0;
     left: 0;
@@ -413,10 +481,41 @@ body
 
 /* ----- MAP ----- */
 
-.model__map
-{
+.model__map {
     position: fixed;
     top: 0;
     left: 0;
     outline: none;
+}
+
+/* ----- MEDIA QUERIES ----- */
+@media (min-width: 1024px) {
+    .home {
+        cursor: none;
+    }
+
+    .cursor__center {
+        display: block;
+        width: 15px;
+        height: 15px;
+        position: fixed;
+        pointer-events: none;
+        background-color: var(--quaternary-color);
+        border-radius: 50%;
+        z-index: 10000;
+        transform: translate(-50%, -50%);
+    }
+
+    .cursor__outline {
+        display: block;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        position: fixed;
+        border: 1px solid var(--quaternary-color);
+        pointer-events: none;
+        z-index: 9999;
+        transform: translate(-50%, -50%);
+        transition: transform 0.1s ease;
+    }
 }

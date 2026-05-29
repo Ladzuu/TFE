@@ -19,6 +19,7 @@ export default class Map
         this.overlayLoading()
         this.setModel()
         this.glowAnim()
+        this.musicBackground()
     }
 
     goBack()
@@ -30,6 +31,30 @@ export default class Map
             this.btnBack.addEventListener('click', () =>
             {
                 window.location.href = 'index.html'
+            })
+        }
+    }
+
+    musicBackground()
+    {
+        this.audio = document.querySelector('.musicPage')
+        this.musicBtn = document.querySelector('.musicBtn')
+
+        if(this.audio && this.musicBtn)
+        {
+            this.audio.volume = 0.1
+
+            this.musicBtn.addEventListener('click', () => {
+                if(this.audio.paused)
+                {
+                    this.audio.play()
+                    .then(() => {
+                        this.musicBtn.classList.add('isPlaying')
+                    })
+                } else {
+                    this.audio.pause()
+                    this.musicBtn.classList.remove('isPlaying')
+                }
             })
         }
     }
