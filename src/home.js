@@ -40,6 +40,11 @@ const musicBtn = document.querySelector('.musicBtn')
 
 audio.volume = 0.1
 
+audio.play()
+.then(() => {
+    musicBtn.classList.add('isPlaying')
+})
+
 musicBtn.addEventListener('click', () => {
     if(audio.paused)
     {
@@ -147,16 +152,64 @@ window.addEventListener('DOMContentLoaded', () =>
 // ------- MAIN -------
 const quotes = 
 [
-    '« Ils me dégoûtent… Je veux les voir morts. »',
-    '« Ils sont si fragiles… Ce seront eux la clé ! »',
-    '« Chaque mot a des conséquences, le silence aussi. »',
-    '« Osiris… quel idiot tu fais. Il est trop tard ! »',
-    '« Étrange… mais sans importance. »',
-    '« Ces faibles humains… Ils ne méritent pas ce pouvoir. »',
-    '« Enfin… L’Égypte est à moi. À moi ! »',
-    '« Ils ont peur… Qu’ils restent cachés dans leur royaume ! »',
-    '« J’offre une nouvelle destinée… Le chaos. »'
+    '«\u00A0Ils me dégoûtent… Je veux les voir morts.\u00A0»',
+    '«\u00A0Ils sont si fragiles… Ce seront eux la clé\u00A0!\u00A0»',
+    '«\u00A0Chaque mot a des conséquences, le silence aussi.\u00A0»',
+    '«\u00A0Osiris… quel idiot tu fais. Il est trop tard\u00A0!\u00A0»',
+    '«\u00A0Étrange… mais sans importance.\u00A0»',
+    '«\u00A0Ces faibles humains… Ils ne méritent pas ce pouvoir.\u00A0»',
+    '«\u00A0Enfin… L’Égypte est à moi. À moi\u00A0!\u00A0»',
+    '«\u00A0Ils ont peur… Qu’ils restent cachés dans leur royaume\u00A0!\u00A0»',
+    '«\u00A0J’offre une nouvelle destinée… Le chaos.\u00A0»'
 ]
+
+const introTitle = document.querySelector('.section__intro--title')
+
+if(introTitle)
+{
+    gsap.fromTo(introTitle,
+        {
+            y: -50,
+            opacity: 0
+        },
+        {
+            y: 0,
+            opacity: 1,
+            duration: 0.8,
+            ease: 'power2.out',
+            scrollTrigger: {
+                trigger: introTitle,
+                start: 'top 80%',
+                end: 'bottom 30%',
+                toggleActions: 'play reverse play reverse'
+            }
+        }
+    )
+}
+
+const goMap = document.querySelector('.section__goMap')
+
+if(goMap)
+{
+    gsap.fromTo(goMap,
+        {
+            y: 50,
+            opacity: 0
+        },
+        {
+            y: 0,
+            opacity: 1,
+            duration: 0.8,
+            ease: 'power2.out',
+            scrollTrigger: {
+                trigger: goMap,
+                start: 'top 80%',
+                end: 'bottom 30%',
+                toggleActions: 'play reverse play reverse'
+            }
+        }
+    )
+}
 
 const storyContent = document.querySelectorAll('.context__content')
 
@@ -170,7 +223,7 @@ storyContent.forEach((blocContent, i) =>
         
         gsap.fromTo(blocContent,
             {
-                y: -50,
+                y: 50,
                 opacity: 0
             },
             {
@@ -180,7 +233,7 @@ storyContent.forEach((blocContent, i) =>
                 ease: 'power2.out',
                 scrollTrigger: {
                     trigger: blocContent,
-                    start: 'top 70%',
+                    start: 'top 80%',
                     end: 'bottom 30%',
                     toggleActions: 'play reverse play reverse'
                 }

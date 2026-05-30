@@ -46,6 +46,13 @@ export default class Island
         {
             this.audio.volume = 0.1
 
+            gsap.delayedCall(2, () => {
+                this.audio.play()
+                .then(() => {
+                    this.musicBtn.classList.add('isPlaying')
+                })
+            })
+
             this.musicBtn.addEventListener('click', () => {
                 if(this.audio.paused)
                 {
@@ -280,7 +287,7 @@ export default class Island
                                 this.textAppear("Des rochers gravitent autour de l'île.\nC'est à la fois fascinant et terrifiant...")
                                 break
                             case 'rock5':
-                                this.textAppear("Cette île, détachée du sol, est jonchée de cristaux.\nElle est jonchée de cristaux.")
+                                this.textAppear("Cette île, détachée du sol, est jonchée de cristaux.\nQuelle énergie puissante...")
                                 break
                         }
                     }

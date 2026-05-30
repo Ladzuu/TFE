@@ -24,7 +24,8 @@ export default {
                 map: resolve(__dirname, 'src/map.html'),
                 temple: resolve(__dirname, 'src/temple.html'),
                 island: resolve(__dirname, 'src/island.html'),
-                village: resolve(__dirname, 'src/village.html')
+                village: resolve(__dirname, 'src/village.html'),
+                credits: resolve(__dirname, 'src/credits.html')
             }
         }
     },
