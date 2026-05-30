@@ -20,8 +20,18 @@ body {
 
 /* ----- GLOBAL ----- */
 
-/* CURSOR */
+/* LOGO */
+.logo__site {
+    position: fixed;
+    z-index: 9999;
+    width: 60px;
+    height: auto;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+}
 
+/* CURSOR */
 .cursor__center {
     display: none;
 }
@@ -70,53 +80,6 @@ body {
         .musicIcon__off {
             display: none;
         }
-    }
-}
-
-/* LOADING SCREEN (3D Scenes) */
-
-.loading__assets {
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    pointer-events: none;
-    font-family: var(--dialogues);
-    color: var(--primary-color);
-    position: fixed;
-
-    &--bar {
-        width: 300px;
-        height: 4px;
-        background: var(--tertiary-color);
-        transform: scaleX(0);
-        transform-origin: left;
-        transition: transform 0.1s ease-out;
-
-        &.ended {
-            transform-origin: right;
-            transition: transform 1.5s ease-in-out;
-        }
-    }
-
-    &--text {
-        margin: 50px 0 10px 0;
-        font-size: var(--text-sizeMb);
-        font-style: italic;
-        letter-spacing: 0.1em;
-        text-align: center;
-        width: 300px;
-    }
-
-    &--percentage {
-        margin: 0;
-        font-size: var(--bigText-sizeMb);
-        opacity: 0.8;
-        cursor: pointer;
     }
 }
 
@@ -169,10 +132,6 @@ body {
     z-index: 1002;
 }
 
-/* Menu open */
-
-// Btn Menu Open
-
 .menu__btn.open {
     i:nth-child(1) {
         top: 50%;
@@ -190,8 +149,6 @@ body {
         transform-origin: center;
     }
 }
-
-// Nav Open
 
 .nav__mb {
     background-color: var(--primary-color);
@@ -338,6 +295,7 @@ body {
 }
 
 /* MAIN */
+
 #main {
     scroll-margin-top: 240px;
 }
@@ -389,8 +347,8 @@ body {
             }
 
             &:last-child {
-            padding-bottom: 240px;
-        }
+                padding-bottom: 240px;
+            }
         }
     }
 
@@ -480,13 +438,51 @@ body {
     }
 }
 
-/* ----- TEMPLE ----- */
+/* ----- 3D SCENE GLOBAL ----- */
 
-.model__temple {
-    position: fixed;
+.loading__assets {
     top: 0;
     left: 0;
-    outline: none;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    pointer-events: none;
+    font-family: var(--dialogues);
+    color: var(--primary-color);
+    position: fixed;
+
+    &--bar {
+        width: 300px;
+        height: 4px;
+        background: var(--tertiary-color);
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.1s ease-out;
+
+        &.ended {
+            transform-origin: right;
+            transition: transform 1.5s ease-in-out;
+        }
+    }
+
+    &--text {
+        margin: 50px 0 10px 0;
+        font-size: var(--text-sizeMb);
+        font-style: italic;
+        letter-spacing: 0.1em;
+        text-align: center;
+        width: 300px;
+    }
+
+    &--percentage {
+        margin: 0;
+        font-size: var(--bigText-sizeMb);
+        opacity: 0.8;
+        cursor: pointer;
+    }
 }
 
 .sceneText {
@@ -552,7 +548,17 @@ body {
     }
 }
 
+/* ----- TEMPLE ----- */
+
+.model__temple {
+    position: fixed;
+    top: 0;
+    left: 0;
+    outline: none;
+}
+
 /* ----- ISLAND ----- */
+
 .model__island {
     position: fixed;
     top: 0;
@@ -561,6 +567,7 @@ body {
 }
 
 /* ----- VILLAGE ----- */
+
 .model__village {
     position: fixed;
     top: 0;
@@ -729,6 +736,10 @@ body {
         cursor: none;
     }
 
+    .logo__site {
+        width: 70px;
+    }
+
     .cursor__center {
         display: block;
         width: 15px;
@@ -757,6 +768,16 @@ body {
     .musicBtn {
         left: 80px;
         cursor: none;
+
+        .musicIcon__on {
+            width: 30px;
+            height: 30px;
+        }
+
+        .musicIcon__off {
+            width: 30px;
+            height: 30px;
+        }
     }
 
     .menu__btn {
@@ -775,6 +796,8 @@ body {
     .nav__mb {
         .nav__list {
             .nav__list--item {
+                margin-bottom: 60px;
+
                 .nav__list--link {
                     font-size: var(--bigText-sizeDt);
                     cursor: none;
@@ -804,6 +827,7 @@ body {
         .section__intro {
             &--title {
                 font-size: var(--bigText-sizeDt);
+                padding-bottom: 80px;
                 width: 500px;
             }
         }
@@ -844,7 +868,35 @@ body {
         gap: 80px;
 
         .section__footer--link {
+            font-size: var(--text-sizeDt);
             cursor: none;
         }
+
+        .section__footer--text {
+            font-size: var(--text-sizeDt);
+        }
+    }
+}
+
+@media (min-width: 1250px) {
+    .grid {
+        grid-template-columns: 150px 1fr 1fr 1fr 1fr 150px;
+        gap: 30px;
+    }
+
+    .gridDt-start2 {
+        grid-column: 2 / 7;
+    }
+
+    .gridDt-start3 {
+        grid-column: 3 / 7;
+    }
+
+    .gridDt-start4 {
+        grid-column: 4 / 7;
+    }
+
+    .section__footer {
+        gap: 120px;
     }
 }
