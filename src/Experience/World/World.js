@@ -13,6 +13,7 @@ export default class World
         this.scene = this.experience.scene
         this.ressources = this.experience.resources
 
+        // Change the class of the canvas for each 3D Scene
         this.ressources.on('ready', () =>
         {
             const canvas = this.experience.canvas
@@ -38,6 +39,7 @@ export default class World
         })
     }
 
+    // Update when 3D Scene is active
     update()
     {
         if(this.map)

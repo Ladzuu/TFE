@@ -17,6 +17,7 @@ export default class Camera
         this.setOrbitControls()
     }
 
+    // Camera settings for each Page (Difference between map and other scenes)
     setPageConfig()
     {
         const canvas = this.canvas
@@ -51,6 +52,7 @@ export default class Camera
         }
     }
 
+    // Settings of each scenes
     setInstance()
     {
         this.instance = new THREE.PerspectiveCamera(
@@ -125,6 +127,7 @@ export default class Camera
         }
     }
 
+    // Go to previous camera
     previousCamera()
     {
         if (this.camAnimation) {
@@ -136,6 +139,7 @@ export default class Camera
         this.animCamera(this.previousPosition)
     }
 
+    // Go to next camera
     nextCamera()
     {
         if (this.camAnimation) {
@@ -147,6 +151,7 @@ export default class Camera
         this.animCamera(this.nextPosition)
     }
 
+    // Anim movement of the camera
     animCamera(targetList)
     {
         this.targetPosition = this.camPositions[targetList].position
@@ -168,6 +173,7 @@ export default class Camera
         })
     }
 
+    // Orbit controls settings
     setOrbitControls()
     {
         this.controls = new OrbitControls(this.instance, this.canvas)
@@ -179,6 +185,7 @@ export default class Camera
         this.controls.maxDistance = this.cameraSettings.maxDistance
     }
 
+    // Resizing the instance
     resize()
     {
         this.instance.aspect = this.sizes.width / this.sizes.height

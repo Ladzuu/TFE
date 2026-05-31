@@ -17,6 +17,7 @@ export default class Ressources extends EventEmitter
         this.toLoad = this.sources.length
         this.loaded = 0
 
+        // UI Elements
         this.loadingContainer = document.querySelector('.loading__assets')
         this.loadingBar = document.querySelector('.loading__assets--bar')
         this.loadingText = document.querySelector('.loading__assets--text')
@@ -25,6 +26,7 @@ export default class Ressources extends EventEmitter
         this.btnBack = document.querySelector('.btn__back')
         this.musicBtn = document.querySelector('.musicBtn')
 
+        // Random Loading Texts
         const randomLoadingText = [
             "Traversée du désert.",
             "Priez Osiris. Il vieille sur vous.",
@@ -48,6 +50,7 @@ export default class Ressources extends EventEmitter
         this.startLoading()
     }
 
+    // Loading Managment
     setLoaders()
     {
         this.loaders = {}
@@ -55,6 +58,8 @@ export default class Ressources extends EventEmitter
             // Loaded
             () =>
             {
+
+                // Anim Overlay
                 gsap.delayedCall(1.2, () =>
                 {
                     if(this.overlayMaterial)
@@ -116,6 +121,7 @@ export default class Ressources extends EventEmitter
         this.loaders.cubeTextureLoader = new THREE.CubeTextureLoader()
     }
 
+    // Loading Files + Hiding UI
     startLoading()
     {
         if(this.arrowsContainer)
@@ -158,6 +164,7 @@ export default class Ressources extends EventEmitter
         }
     }
 
+    // Verify + Save each sources before event
     sourceLoaded(source, file)
     {
         this.items[source.name] = file

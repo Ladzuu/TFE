@@ -24,6 +24,7 @@ export default class Temple
         this.musicBackground()
     }
 
+    // Go back to previous page
     goBack()
     {
         this.btnBack = document.querySelector('.btn__back')
@@ -37,6 +38,7 @@ export default class Temple
         }
     }
 
+    // Set background music
     musicBackground()
     {
         this.audio = document.querySelector('.musicPage')
@@ -68,6 +70,7 @@ export default class Temple
         }
     }
 
+    // Creating loading overlay
     overlayLoading()
     {
         this.overlayGeometry = new THREE.PlaneGeometry(2, 2, 1, 1)
@@ -98,6 +101,7 @@ export default class Temple
         this.ressources.overlayMaterial = this.overlayMaterial
     }
 
+    // Setup 3D Scene -> Model + Interactions
     setModel()
     {
         this.model = this.resource.scene
@@ -144,6 +148,7 @@ export default class Temple
         }
     }
 
+    // Glow effect on interactive objects
     glowAnim()
     {
         if(!this.glowMaterial) return
@@ -164,6 +169,7 @@ export default class Temple
         })
     }
 
+    // Text appear when object clicked
     textAppear(text)
     {
         this.templeMessageItem.textContent = text
@@ -201,6 +207,7 @@ export default class Temple
                 this.raycasting.setFromCamera(this.experience.mouse, this.experience.camera.instance)
                 this.intersects = this.raycasting.intersectObjects(this.interactiveObjects)
 
+                // Cursor pointer on interactive object
                 if(this.intersects.length > 0)
                 {
                     document.body.style.cursor = 'pointer'
@@ -208,6 +215,7 @@ export default class Temple
                     document.body.style.cursor = 'default'
                 }
 
+                // Object Hovered
                 const hoveredObject = this.intersects.length > 0 ? this.intersects[0].object : null
 
                 for (const object of this.interactiveObjects)
@@ -222,6 +230,7 @@ export default class Temple
                     })
                 }
 
+                // Message on click
                 if (this.experience.objClicked)
                 {
                     if (hoveredObject)

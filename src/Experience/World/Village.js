@@ -24,6 +24,7 @@ export default class Village
         this.musicBackground()
     }
 
+    // Go back to previous page
     goBack()
     {
         this.btnBack = document.querySelector('.btn__back')
@@ -37,6 +38,7 @@ export default class Village
         }
     }
 
+    // Set background music
     musicBackground()
     {
         this.audio = document.querySelector('.musicPage')
@@ -68,6 +70,7 @@ export default class Village
         }
     }
 
+    // Creating loading overlay
     overlayLoading()
     {
         this.overlayGeometry = new THREE.PlaneGeometry(2, 2, 1, 1)
@@ -98,6 +101,7 @@ export default class Village
         this.ressources.overlayMaterial = this.overlayMaterial
     }
 
+    // Setup 3D Scene -> Model + Interactions
     setModel()
     {
         this.model = this.resource.scene
@@ -146,6 +150,7 @@ export default class Village
         this.model.rotation.y = 270 * (Math.PI / 180)
     }
 
+    // Glow effect on interactive objects
     glowAnim()
     {
         if(!this.glowMaterial) return
@@ -166,6 +171,7 @@ export default class Village
         })
     }
 
+    // Text appear when object clicked
     textAppear(text)
     {
         this.villageMessageItem.textContent = text
@@ -194,7 +200,7 @@ export default class Village
     {
         if(this.model)
         {
-            // Temple Animation
+            // Anim village
             this.model.position.y = -1 + Math.sin(this.experience.time.elapsed * 0.001 * 1.2) * 0.2
 
             // Raycasting
@@ -203,6 +209,7 @@ export default class Village
                 this.raycasting.setFromCamera(this.experience.mouse, this.experience.camera.instance)
                 this.intersects = this.raycasting.intersectObjects(this.interactiveObjects)
 
+                // Cursor pointer on interactive object
                 if(this.intersects.length > 0)
                 {
                     document.body.style.cursor = 'pointer'
@@ -210,6 +217,7 @@ export default class Village
                     document.body.style.cursor = 'default'
                 }
 
+                // Object Hovered
                 const hoveredObject = this.intersects.length > 0 ? this.intersects[0].object : null
 
                 for (const object of this.interactiveObjects)
@@ -224,6 +232,7 @@ export default class Village
                     })
                 }
 
+                // Message on click
                 if (this.experience.objClicked)
                 {
                     if (hoveredObject)

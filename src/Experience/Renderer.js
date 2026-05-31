@@ -29,6 +29,7 @@ export default class Renderer
         this.instance.setPixelRatio(this.sizes.pixelRatio)
     }
 
+    // Background color gradient anim
     templeAnimateBG()
     {
         const templeVariableBgColor = new THREE.Color('#1c1e2b')
@@ -47,6 +48,7 @@ export default class Renderer
         })
     }
 
+    // Resizing the instance
     resize()
     {
         this.instance.setSize(this.sizes.width, this.sizes.height)

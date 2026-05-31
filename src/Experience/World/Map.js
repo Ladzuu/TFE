@@ -22,6 +22,7 @@ export default class Map
         this.musicBackground()
     }
 
+    // Go back to previous page
     goBack()
     {
         this.btnBack = document.querySelector('.btn__back')
@@ -35,6 +36,7 @@ export default class Map
         }
     }
 
+    // Set background music
     musicBackground()
     {
         this.audio = document.querySelector('.musicPage')
@@ -66,6 +68,7 @@ export default class Map
         }
     }
 
+    // Creating loading overlay
     overlayLoading()
     {
         this.overlayGeometry = new THREE.PlaneGeometry(2, 2, 1, 1)
@@ -96,6 +99,7 @@ export default class Map
         this.ressources.overlayMaterial = this.overlayMaterial
     }
 
+    // Setup 3D Scene -> Model + Interactions
     setModel()
     {
         this.model = this.resource.scene
@@ -168,6 +172,7 @@ export default class Map
         this.model.rotation.y = Math.PI
     }
 
+    // Glow effect on interactive objects
     glowAnim()
     {
         if(!this.glowMaterial) return
@@ -225,6 +230,7 @@ export default class Map
                 this.raycasting.setFromCamera(this.experience.mouse, this.experience.camera.instance)
                 this.intersects = this.raycasting.intersectObjects(this.interactiveObjects)
 
+                // Cursor pointer on interactive object
                 if(this.intersects.length > 0)
                 {
                     document.body.style.cursor = 'pointer'
@@ -232,6 +238,7 @@ export default class Map
                     document.body.style.cursor = 'default'
                 }
 
+                // Go to 3D Scene page when click on interactive object
                 if(this.experience.objClicked)
                 {
                     this.intersects.forEach(intersect => {
