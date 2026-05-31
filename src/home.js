@@ -279,6 +279,19 @@ storyContent.forEach((blocContent, i) =>
     }
 })
 
+// ------- CREDITS -------
+gsap.from('.credits__box', 
+{
+    opacity: 0,
+    y: 50,
+    duration: 0.5,
+    stagger: 0.3,
+    scrollTrigger: {
+        trigger: '.main__credits',
+        start: 'top 80%',
+        toggleActions: 'play non none reverse'
+    }
+})
 
 // ------- DECORATION HOME -------
 const canvas = document.querySelector('.section__hero--canvas')
@@ -309,9 +322,9 @@ circleHeaderBig.position.y = -0.5
 circleHeaderMid.rotation.x = 1.9
 circleHeaderMid.position.y = -1
 
-function animate() 
+function animateHeader() 
 {
-    requestAnimationFrame(animate)
+    requestAnimationFrame(animateHeader)
     stoneHeader.rotation.x += 0.008
     stoneHeader.rotation.y += 0.008
     stoneHeader.rotation.z += 0.008
@@ -319,4 +332,92 @@ function animate()
     circleHeaderMid.rotation.z += 0.008
     renderer.render(scene, camera)
 }
-animate()
+animateHeader()
+
+// ------- DECORATION CREDITS -------
+
+const creditsMaterial = new THREE.MeshBasicMaterial({ color: 0x2D7CFC, wireframe: true })
+
+// Canvas Code
+const canvasCreditsFirst = document.querySelector('.credits__box--canvasFirst')
+if(canvasCreditsFirst)
+{
+    const sceneFirst = new THREE.Scene()
+    const cameraFirst = new THREE.PerspectiveCamera(45, 1, 0.1, 100)
+    cameraFirst.position.z = 4
+    const rendererCreditsFirst = new THREE.WebGLRenderer({ canvas: canvasCreditsFirst, antialias: true, alpha: true })
+    rendererCreditsFirst.setSize(200, 200)
+
+    const geometryCreditsFirst = new THREE.TetrahedronGeometry()
+    const pyramid = new THREE.Mesh(geometryCreditsFirst, creditsMaterial)
+    sceneFirst.add(pyramid)
+
+    function animateCreditsFirst () 
+    {
+        requestAnimationFrame(animateCreditsFirst)
+
+        pyramid.rotation.x += 0.008
+        pyramid.rotation.y += 0.008
+        pyramid.rotation.z += 0.008
+
+        rendererCreditsFirst.render(sceneFirst, cameraFirst)
+    }
+
+    animateCreditsFirst()
+}
+
+// Canvas Music
+const canvasCreditsSecond = document.querySelector('.credits__box--canvasSecond')
+if(canvasCreditsSecond)
+{
+    const sceneSecond = new THREE.Scene()
+    const cameraSecond = new THREE.PerspectiveCamera(45, 1, 0.1, 100)
+    cameraSecond.position.z = 4
+    const rendererCreditsSecond = new THREE.WebGLRenderer({ canvas: canvasCreditsSecond, antialias: true, alpha: true })
+    rendererCreditsSecond.setSize(200, 200)
+
+    const geometryCreditsSecond = new THREE.IcosahedronGeometry()
+    const crystal = new THREE.Mesh(geometryCreditsSecond, creditsMaterial)
+    sceneSecond.add(crystal)
+
+    function animateCreditsSecond () 
+    {
+        requestAnimationFrame(animateCreditsSecond)
+
+        crystal.rotation.x += 0.008
+        crystal.rotation.y += 0.008
+        crystal.rotation.z += 0.008
+
+        rendererCreditsSecond.render(sceneSecond, cameraSecond)
+    }
+
+    animateCreditsSecond()
+}
+
+// Canvas Assets
+const canvasCreditsThird = document.querySelector('.credits__box--canvasThird')
+if(canvasCreditsThird)
+{
+    const sceneThird = new THREE.Scene()
+    const cameraThird = new THREE.PerspectiveCamera(45, 1, 0.1, 100)
+    cameraThird.position.z = 4
+    const rendererCreditsThird = new THREE.WebGLRenderer({ canvas: canvasCreditsThird, antialias: true, alpha: true })
+    rendererCreditsThird.setSize(200, 200)
+
+    const geometryCreditsThird = new THREE.BoxGeometry(1.2, 1.2, 1.2)
+    const cube = new THREE.Mesh(geometryCreditsThird, creditsMaterial)
+    sceneThird.add(cube)
+
+    function animateCreditsThird () 
+    {
+        requestAnimationFrame(animateCreditsThird)
+
+        cube.rotation.x += 0.008
+        cube.rotation.y += 0.008
+        cube.rotation.z += 0.008
+
+        rendererCreditsThird.render(sceneThird, cameraThird)
+    }
+
+    animateCreditsThird()
+}
