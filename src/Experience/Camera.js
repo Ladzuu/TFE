@@ -29,23 +29,23 @@ export default class Camera
         {
             this.cameraSettings = {
                 fov: 45,
-                position: new THREE.Vector3(0, 30, 35),
+                position: new THREE.Vector3(0, 35, 40),
                 lookAt: new THREE.Vector3(0, 0, 0),
                 minPolarAngle: Math.PI / 2.7,
                 maxPolarAngle: Math.PI / 2.7,
                 minDistance: 20,
-                maxDistance: 80,
+                maxDistance: 120,
                 enablePan: true
             }
         } else {
             this.cameraSettings = {
                 fov: 35,
-                position: new THREE.Vector3(22, 15, 17),
+                position: new THREE.Vector3(27, 20, 22),
                 lookAt: new THREE.Vector3(0, 0, 0),
                 minPolarAngle: Math.PI / 2.7,
                 maxPolarAngle: Math.PI / 2.7,
                 minDistance: 15,
-                maxDistance: 40,
+                maxDistance: 80,
                 enablePan: false
             }
         }
@@ -67,15 +67,15 @@ export default class Camera
         {
             this.camPositions = [
                 {
-                    position: new THREE.Vector3(22, 15, 17),
+                    position: new THREE.Vector3(25, 20, 22),
                     lookAt: new THREE.Vector3(0, 0, 0)
                 },
                 {
-                    position: new THREE.Vector3(10, 5, -16),
+                    position: new THREE.Vector3(15, 10, -21),
                     lookAt: new THREE.Vector3(0, 0, 0)
                 },
                 { 
-                    position: new THREE.Vector3(14, 4, 0),
+                    position: new THREE.Vector3(19, 9, 0),
                     lookAt: new THREE.Vector3(0, 0, 0)
                 }
             ]
@@ -87,15 +87,15 @@ export default class Camera
         {
             this.camPositions = [
                 {
-                    position: new THREE.Vector3(22, 15, 17),
+                    position: new THREE.Vector3(27, 20, 22),
                     lookAt: new THREE.Vector3(0, 0, 0)
                 },
                 {
-                    position: new THREE.Vector3(10, 5, -16),
+                    position: new THREE.Vector3(-20, 22, 10),
                     lookAt: new THREE.Vector3(0, 0, 0)
                 },
                 { 
-                    position: new THREE.Vector3(14, 4, 0),
+                    position: new THREE.Vector3(15, -15, -25),
                     lookAt: new THREE.Vector3(0, 0, 0)
                 }
             ]
@@ -107,15 +107,15 @@ export default class Camera
         {
             this.camPositions = [
                 {
-                    position: new THREE.Vector3(22, 15, 17),
+                    position: new THREE.Vector3(27, 20, 22),
                     lookAt: new THREE.Vector3(0, 0, 0)
                 },
                 {
-                    position: new THREE.Vector3(10, 5, -16),
+                    position: new THREE.Vector3(20, 15, -26),
                     lookAt: new THREE.Vector3(0, 0, 0)
                 },
                 { 
-                    position: new THREE.Vector3(14, 4, 0),
+                    position: new THREE.Vector3(-24, 14, -10),
                     lookAt: new THREE.Vector3(0, 0, 0)
                 }
             ]

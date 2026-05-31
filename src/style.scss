@@ -545,7 +545,6 @@ body {
         margin: 0;
         font-size: var(--bigText-sizeMb);
         opacity: 0.8;
-        cursor: pointer;
     }
 }
 
@@ -560,7 +559,7 @@ body {
     border-radius: 15px;
     text-align: center;
     font-style: italic;
-    width: 300px;
+    width: 350px;
     opacity: 0;
     text-wrap: wrap;
     font-family: var(--dialogues);
@@ -666,6 +665,10 @@ body {
     .main {
         padding: 0 30px;
     }
+
+    .btn__back {
+        right: 30px;
+    }
 }
 
 @media (min-width: 500px) {
@@ -708,6 +711,10 @@ body {
         padding: 0 40px;
     }
 
+    .btn__back {
+        right: 40px;
+    }
+
     .grid {
         display: grid;
         grid-template-columns: 60px 150px 1fr;
@@ -729,6 +736,29 @@ body {
 
     .menu__btn {
         right: 60px;
+    }
+
+    .btn__back {
+        right: 60px;
+    }
+
+    .loading__assets {
+
+        &--bar {
+            width: 400px;
+        }
+
+        &--text {
+            width: 400px;
+        }
+
+        &--percentage {
+            font-size: var(--text-sizeMb);
+        }
+    }
+
+    .sceneText {
+        bottom: 60px;
     }
 
     .nav__mb {
@@ -780,6 +810,7 @@ body {
 
             &--text {
                 width: 400px;
+                font-size: var(--bigText-sizeTb);
             }
         }
     }
@@ -851,6 +882,39 @@ body {
             width: 30px;
             height: 30px;
         }
+    }
+
+    .loading__assets {
+
+        &--bar {
+            width: 500px;
+        }
+
+        &--text {
+            width: 500px;
+            padding-bottom: 32px;
+            font-size: var(--text-sizeDt);
+        }
+
+        &--percentage {
+            font-size: var(--bigText-sizeDt);
+        }
+    }
+
+    .sceneText {
+        bottom: 80px;
+        font-size: var(--text-sizeDt);
+    }
+
+    .templeUI__switchCam {
+        gap: 40px;
+    }
+
+    .btn__back {
+        top: 30px;
+        right: 80px;
+        width: 30px;
+        height: 30px;
     }
 
     .menu__btn {
@@ -964,6 +1028,17 @@ body {
 }
 
 @media (min-width: 1250px) {
+    .loading__assets {
+
+        &--bar {
+            width: 600px;
+        }
+
+        &--text {
+            width: 600px;
+        }
+    }
+
     .grid {
         grid-template-columns: 150px 1fr 1fr 1fr 1fr 150px;
         gap: 30px;

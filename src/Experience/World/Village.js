@@ -203,6 +203,13 @@ export default class Village
                 this.raycasting.setFromCamera(this.experience.mouse, this.experience.camera.instance)
                 this.intersects = this.raycasting.intersectObjects(this.interactiveObjects)
 
+                if(this.intersects.length > 0)
+                {
+                    document.body.style.cursor = 'pointer'
+                } else {
+                    document.body.style.cursor = 'default'
+                }
+
                 const hoveredObject = this.intersects.length > 0 ? this.intersects[0].object : null
 
                 for (const object of this.interactiveObjects)

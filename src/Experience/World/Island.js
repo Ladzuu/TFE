@@ -239,6 +239,13 @@ export default class Island
                 this.raycasting.setFromCamera(this.experience.mouse, this.experience.camera.instance)
                 this.intersects = this.raycasting.intersectObjects(this.interactiveObjects)
 
+                if(this.intersects.length > 0)
+                {
+                    document.body.style.cursor = 'pointer'
+                } else {
+                    document.body.style.cursor = 'default'
+                }
+
                 const hoveredObject = this.intersects.length > 0 ? this.intersects[0].object : null
 
                 for (const object of this.interactiveObjects)
@@ -246,9 +253,9 @@ export default class Island
                     const isHovered = object === hoveredObject
 
                     gsap.to(object.scale, {
-                        x: isHovered ? 1.2 : 1,
-                        y: isHovered ? 1.2 : 1,
-                        z: isHovered ? 1.2 : 1,
+                        x: isHovered ? 1.1 : 1,
+                        y: isHovered ? 1.1 : 1,
+                        z: isHovered ? 1.1 : 1,
                         duration: 0.3
                     })
                 }
