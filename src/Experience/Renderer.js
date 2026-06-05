@@ -34,7 +34,8 @@ export default class Renderer
     {
         const templeVariableBgColor = new THREE.Color('#1c1e2b')
 
-        gsap.to(this.templeBgColor, {
+        gsap.to(this.templeBgColor,
+        {
             r: templeVariableBgColor.r,
             g: templeVariableBgColor.g, 
             b: templeVariableBgColor.b,
@@ -42,7 +43,8 @@ export default class Renderer
             repeat: -1,
             yoyo: true,
             ease: "sine.inOut",
-            onUpdate: () => {
+            onUpdate: () =>
+            {
                 this.instance.setClearColor(this.templeBgColor)
             }
         })

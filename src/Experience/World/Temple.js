@@ -48,21 +48,27 @@ export default class Temple
         {
             this.audio.volume = 0.1
 
-            gsap.delayedCall(2, () => {
+            gsap.delayedCall(2, () =>
+            {
                 this.audio.play()
-                .then(() => {
+                .then(() =>
+                {
                     this.musicBtn.classList.add('isPlaying')
                 })
             })
 
-            this.musicBtn.addEventListener('click', () => {
+            this.musicBtn.addEventListener('click', () =>
+            {
                 if(this.audio.paused)
                 {
                     this.audio.play()
-                    .then(() => {
+                    .then(() =>
+                    {
                         this.musicBtn.classList.add('isPlaying')
                     })
-                } else {
+                }
+                else
+                {
                     this.audio.pause()
                     this.musicBtn.classList.remove('isPlaying')
                 }
@@ -109,7 +115,7 @@ export default class Temple
 
         // Baked texture
         this.bakedTexture = this.ressources.items.templeTexture
-        if (this.bakedTexture)
+        if(this.bakedTexture)
         {
             this.bakedTexture.colorSpace = THREE.SRGBColorSpace
             this.bakedTexture.flipY = false
@@ -125,11 +131,16 @@ export default class Temple
                 if(child instanceof THREE.Mesh)
                 {
                     // Light materials
-                    if (child.name.startsWith('pathLight')) {
+                    if(child.name.startsWith('pathLight'))
+                    {
                         child.material = this.pathLightsMaterial
-                    } else if (child.name === 'entranceLight' ) {
+                    }
+                    else if(child.name === 'entranceLight' )
+                    {
                         child.material = this.entranceLightMaterial
-                    } else {
+                    }
+                    else
+                    {
                         // Baked texture material
                         child.material = this.bakedMaterial
                     }
@@ -138,7 +149,8 @@ export default class Temple
                     this.interactiveObjects = []
                     this.model.traverse((child) =>
                     {
-                        if (["torch1", "torch2", "torch3", "torch4", "torch5", "torch6", "door"].includes(child.name)) {
+                        if(["torch1", "torch2", "torch3", "torch4", "torch5", "torch6", "door"].includes(child.name))
+                        {
                             child.material = this.glowMaterial
                             this.interactiveObjects.push(child)
                         }
@@ -153,7 +165,8 @@ export default class Temple
     {
         if(!this.glowMaterial) return
 
-        gsap.fromTo(this.glowMaterial.color, {
+        gsap.fromTo(this.glowMaterial.color,
+        {
             r: 0.8,
             g: 0.8,
             b: 0.8
@@ -177,13 +190,16 @@ export default class Temple
         
         gsap.set(this.templeMessageItem, { opacity: 0, y: 30 })
         
-        gsap.to(this.templeMessageItem, {
+        gsap.to(this.templeMessageItem,
+        {
             opacity: 1,
             y: 0,
             duration: 1,
             ease: "power4.out",
-            onComplete: () => {
-                gsap.to(this.templeMessageItem, {
+            onComplete: () =>
+            {
+                gsap.to(this.templeMessageItem,
+                {
                     opacity: 0,
                     y: 30,
                     duration: 1,
@@ -202,7 +218,7 @@ export default class Temple
             this.model.position.y = -1 + Math.sin(this.experience.time.elapsed * 0.001 * 1.2) * 0.2
 
             // Raycasting
-            if (this.interactiveObjects && this.interactiveObjects.length > 0)
+            if(this.interactiveObjects && this.interactiveObjects.length > 0)
             {
                 this.raycasting.setFromCamera(this.experience.mouse, this.experience.camera.instance)
                 this.intersects = this.raycasting.intersectObjects(this.interactiveObjects)
@@ -211,18 +227,21 @@ export default class Temple
                 if(this.intersects.length > 0)
                 {
                     document.body.style.cursor = 'pointer'
-                } else {
+                }
+                else
+                {
                     document.body.style.cursor = 'default'
                 }
 
                 // Object Hovered
                 const hoveredObject = this.intersects.length > 0 ? this.intersects[0].object : null
 
-                for (const object of this.interactiveObjects)
+                for(const object of this.interactiveObjects)
                 {
                     const isHovered = object === hoveredObject
                     
-                    gsap.to(object.scale, {
+                    gsap.to(object.scale,
+                    {
                         x: isHovered ? 1.15 : 1,
                         y: isHovered ? 1.15 : 1,
                         z: isHovered ? 1.15 : 1,
@@ -231,9 +250,9 @@ export default class Temple
                 }
 
                 // Message on click
-                if (this.experience.objClicked)
+                if(this.experience.objClicked)
                 {
-                    if (hoveredObject)
+                    if(hoveredObject)
                     {
                         switch (hoveredObject.name)
                         {

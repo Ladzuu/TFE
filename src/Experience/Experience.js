@@ -83,10 +83,14 @@ export default class Experience
         }
 
         // Switch camera (Keyboard)
-        window.addEventListener('keydown', (event) => {
-            if (event.key === 'ArrowLeft') {
+        window.addEventListener('keydown', (event) =>
+        {
+            if(event.key === 'ArrowLeft')
+            {
                 this.camera.previousCamera()
-            } else if (event.key === 'ArrowRight') {
+            }
+            else if(event.key === 'ArrowRight')
+            {
                 this.camera.nextCamera()
             }
         })

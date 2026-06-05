@@ -46,21 +46,27 @@ export default class Map
         {
             this.audio.volume = 0.05
 
-            gsap.delayedCall(2.5, () => {
+            gsap.delayedCall(2.5, () =>
+            {
                 this.audio.play()
-                .then(() => {
+                .then(() =>
+                {
                     this.musicBtn.classList.add('isPlaying')
                 })
             })
 
-            this.musicBtn.addEventListener('click', () => {
+            this.musicBtn.addEventListener('click', () =>
+            {
                 if(this.audio.paused)
                 {
                     this.audio.play()
-                    .then(() => {
+                    .then(() =>
+                    {
                         this.musicBtn.classList.add('isPlaying')
                     })
-                } else {
+                }
+                else
+                {
                     this.audio.pause()
                     this.musicBtn.classList.remove('isPlaying')
                 }
@@ -134,17 +140,28 @@ export default class Map
                 if(child instanceof THREE.Mesh)
                 {
                     // Light materials
-                    if(child.name.startsWith('crystalEmission') || child.name.startsWith('potLight')) {
+                    if(child.name.startsWith('crystalEmission') || child.name.startsWith('potLight'))
+                    {
                         child.material = this.crystalLightMaterial
-                    } else if (child.name.startsWith('doorLight') || child.name.startsWith('window')) {
+                    }
+                    else if(child.name.startsWith('doorLight') || child.name.startsWith('window'))
+                    {
                         child.material = this.villageLightMaterial
-                    } else if (child.name.startsWith('pathLight') || child.name === 'doorTemple') {
+                    }
+                    else if(child.name.startsWith('pathLight') || child.name === 'doorTemple')
+                    {
                         child.material = this.templeLightMaterial
-                    } else if (child.name === 'waterEmissive') {
+                    }
+                    else if(child.name === 'waterEmissive')
+                    {
                         child.material = this.waterLightMaterial
-                    } else if (child.name === 'river') {
+                    }
+                    else if(child.name === 'river')
+                    {
                         child.material = this.riverLightMaterial
-                    } else {
+                    }
+                    else
+                    {
                         // Baked texture material
                         child.material = this.bakedMaterial
                     }
@@ -152,16 +169,22 @@ export default class Map
                     // Animated objects
                     child.baseY = child.position.y
 
-                    if(child.name.startsWith('crystalShard') || child.name === 'crystalCenter') {
+                    if(child.name.startsWith('crystalShard') || child.name === 'crystalCenter')
+                    {
                         this.crystalsIsland.push(child)
-                    } else if(child.name === 'pillar1' || child.name === 'pillar3' || child.name === 'pillar6' || child.name === 'pillar8' || child.name === 'pillar10') {
+                    }
+                    else if(child.name === 'pillar1' || child.name === 'pillar3' || child.name === 'pillar6' || child.name === 'pillar8' || child.name === 'pillar10')
+                    {
                         this.pillarsIsland.push(child)
-                    } else if(child.name.startsWith('rockIsland')) {
+                    }
+                    else if(child.name.startsWith('rockIsland'))
+                    {
                         this.rocksIsland.push(child)
                     }
 
                     // Interactive objects
-                    if(child.name.startsWith('stage') || child.name.startsWith('slab') || child.name.startsWith('logCenter') || child.name.startsWith('woodBoxCenter') || child.name.startsWith('potCenter') || child.name === 'doorWood' || child.name.startsWith('ladder') || child.name.startsWith('wall') || child.name.startsWith('rockTemple') || child.name.startsWith('torch') || child.name.startsWith('templeSlab') || child.name === 'door' || child.name === 'island' || child.name.startsWith('pillar') || child.name.startsWith('rockIsland') || child.name === 'stele' || child.name.startsWith('crystalShard') || child.name === 'crystalCenter' || child.name.startsWith('altar')) {
+                    if(child.name.startsWith('stage') || child.name.startsWith('slab') || child.name.startsWith('logCenter') || child.name.startsWith('woodBoxCenter') || child.name.startsWith('potCenter') || child.name === 'doorWood' || child.name.startsWith('ladder') || child.name.startsWith('wall') || child.name.startsWith('rockTemple') || child.name.startsWith('torch') || child.name.startsWith('templeSlab') || child.name === 'door' || child.name === 'island' || child.name.startsWith('pillar') || child.name.startsWith('rockIsland') || child.name === 'stele' || child.name.startsWith('crystalShard') || child.name === 'crystalCenter' || child.name.startsWith('altar'))
+                    {
                         child.material = this.glowMaterial
                         this.interactiveObjects.push(child)
                     }
@@ -177,7 +200,8 @@ export default class Map
     {
         if(!this.glowMaterial) return
 
-        gsap.fromTo(this.glowMaterial.color, {
+        gsap.fromTo(this.glowMaterial.color,
+        {
             r: 0.8,
             g: 0.8,
             b: 0.8
@@ -225,7 +249,7 @@ export default class Map
             }
 
             // Raycasting
-            if (this.interactiveObjects && this.interactiveObjects.length > 0)
+            if(this.interactiveObjects && this.interactiveObjects.length > 0)
             {
                 this.raycasting.setFromCamera(this.experience.mouse, this.experience.camera.instance)
                 this.intersects = this.raycasting.intersectObjects(this.interactiveObjects)
@@ -234,19 +258,27 @@ export default class Map
                 if(this.intersects.length > 0)
                 {
                     document.body.style.cursor = 'pointer'
-                } else {
+                }
+                else
+                {
                     document.body.style.cursor = 'default'
                 }
 
                 // Go to 3D Scene page when click on interactive object
                 if(this.experience.objClicked)
                 {
-                    this.intersects.forEach(intersect => {
-                        if (intersect.object.name.startsWith('stage')) {
+                    this.intersects.forEach(intersect =>
+                    {
+                        if(intersect.object.name.startsWith('stage'))
+                        {
                             window.location.href = 'village.html'
-                        } else if(intersect.object.name.startsWith('rockTemple')) {
+                        }
+                        else if(intersect.object.name.startsWith('rockTemple'))
+                        {
                             window.location.href = 'temple.html'
-                        } else if(intersect.object.name === 'island') {
+                        }
+                        else if(intersect.object.name === 'island')
+                        {
                             window.location.href = 'island.html'
                         }
                     })

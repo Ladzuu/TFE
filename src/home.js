@@ -14,7 +14,8 @@ const outline = document.querySelector('.cursor__outline')
 let mouseX = 0, mouseY = 0
 let outlineX = 0, outlineY = 0
 
-document.addEventListener('mousemove', (e) =>{
+document.addEventListener('mousemove', (e) =>
+{
     mouseX = e.clientX
     mouseY = e.clientY
 
@@ -22,7 +23,8 @@ document.addEventListener('mousemove', (e) =>{
     cursor.style.top = `${mouseY}px`
 })
 
-function animCursor() {
+function animCursor()
+{
     outlineX += (mouseX - outlineX) * 0.1
     outlineY += (mouseY - outlineY) * 0.1
 
@@ -41,18 +43,23 @@ const musicBtn = document.querySelector('.musicBtn')
 audio.volume = 0.1
 
 audio.play()
-.then(() => {
+.then(() => 
+{
     musicBtn.classList.add('isPlaying')
 })
 
-musicBtn.addEventListener('click', () => {
+musicBtn.addEventListener('click', () =>
+{
     if(audio.paused)
     {
         audio.play()
-        .then(() => {
+        .then(() =>
+        {
             musicBtn.classList.add('isPlaying')
         })
-    } else {
+    }
+    else
+    {
         audio.pause()
         musicBtn.classList.remove('isPlaying')
     }
@@ -70,14 +77,16 @@ if(menuButton && menu)
 
         menuButton.classList.toggle('open')
 
-        if (menu.classList.contains('open')) 
+        if(menu.classList.contains('open'))
         {
             gsap.to(menuLinks, {
                 opacity: 0,
                 duration: 0.1,
                 stagger: { each: 0.1, from: 'end' },
-                onComplete: function () {
-                    gsap.to(menu, {
+                onComplete: function ()
+                {
+                    gsap.to(menu,
+                    {
                         y: '-100%',
                         duration: 0.1,
                         ease: 'power3.out',
@@ -85,15 +94,20 @@ if(menuButton && menu)
                     menu.classList.remove('open')
                 },
             })
-        } else {
+        }
+        else
+        {
             gsap.fromTo(
                 menu,
-                { y: '-100%' },
+                {
+                    y: '-100%'
+                },
                 {
                     y: '0%',
                     duration: 0.5,
                     ease: 'power4.out',
-                    onComplete: function () {
+                    onComplete: function ()
+                    {
                         gsap.to(
                             menuLinks,
                             {
@@ -108,14 +122,18 @@ if(menuButton && menu)
             )
             menu.classList.add('open')
 
-            menuLinks.forEach(link => {
-                link.addEventListener('click', () => {
+            menuLinks.forEach(link =>
+            {
+                link.addEventListener('click', () =>
+                {
                     gsap.to(menuLinks, {
                         opacity: 0,
                         duration: 0.1,
                         stagger: { each: 0.1, from: 'end' },
-                        onComplete: function () {
-                            gsap.to(menu, {
+                        onComplete: function ()
+                        {
+                            gsap.to(menu,
+                            {
                                 y: '-100%',
                                 duration: 0.1,
                                 ease: 'power3.out',
@@ -133,14 +151,16 @@ if(menuButton && menu)
 // ------- HEADER -------
 window.addEventListener('DOMContentLoaded', () => 
 {
-    gsap.from('.section__hero--title', {
+    gsap.from('.section__hero--title',
+    {
         y: -80,
         opacity: 0,
         duration: 1.2,
         ease: 'power4.out'
     })
 
-    gsap.from('.section__hero--text', {
+    gsap.from('.section__hero--text',
+    {
         y: 40,
         opacity: 0,
         duration: 1.2,
@@ -201,7 +221,8 @@ if(goMap)
             opacity: 1,
             duration: 0.8,
             ease: 'power2.out',
-            scrollTrigger: {
+            scrollTrigger:
+            {
                 trigger: goMap,
                 start: 'top 80%',
                 end: 'bottom 30%',
@@ -231,7 +252,8 @@ storyContent.forEach((blocContent, i) =>
                 opacity: 1,
                 duration: 0.8,
                 ease: 'power2.out',
-                scrollTrigger: {
+                scrollTrigger:
+                {
                     trigger: blocContent,
                     start: 'top 80%',
                     end: 'bottom 30%',
@@ -240,39 +262,47 @@ storyContent.forEach((blocContent, i) =>
             }
         )
 
-        ScrollTrigger.create({
+        ScrollTrigger.create(
+        {
             trigger: el,
             start: 'top 40%',
             end: 'bottom 80%',
-            onEnter: () => {
+            onEnter: () =>
+            {
                 gsap.timeline()
-                    .to(el, {
+                    .to(el,
+                    {
                         opacity: 0,
                         duration: 0.3,
                         ease: 'power1.in'
                     })
-                    .to(el, {
+                    .to(el, 
+                    {
                         opacity: 1, 
                         duration: 0.5, 
                         ease: 'power1.out',
                         onStart: () => { el.textContent = quotes[i] } 
                     })
             },
-            onLeaveBack: () => {
+            onLeaveBack: () =>
+            {
                 gsap.timeline()
-                    .to(el, {
+                    .to(el, 
+                    {
                         opacity: 0,
                         duration: 0.3,
                         ease: 'power1.in'
                     })
-                    .to(el, {
+                    .to(el, 
+                    {
                         opacity: 1, 
                         duration: 0.5, 
                         ease: 'power1.out',
                         onStart: () => { el.textContent = hieroglyphsBase } 
                     })
             },
-            onLeave: () => {
+            onLeave: () =>
+            {
                 el.textContent = hieroglyphsBase
             }
         })
@@ -286,7 +316,8 @@ gsap.from('.credits__box',
     y: 50,
     duration: 0.5,
     stagger: 0.3,
-    scrollTrigger: {
+    scrollTrigger:
+    {
         trigger: '.main__credits',
         start: 'top 80%',
         toggleActions: 'play non none reverse'

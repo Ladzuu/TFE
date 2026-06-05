@@ -27,7 +27,8 @@ export default class Ressources extends EventEmitter
         this.musicBtn = document.querySelector('.musicBtn')
 
         // Random Loading Texts
-        const randomLoadingText = [
+        const randomLoadingText = 
+        [
             "Traversée du désert.",
             "Priez Osiris. Il vieille sur vous.",
             "Une puissante énergie résonne dans la nuit.",
@@ -69,7 +70,8 @@ export default class Ressources extends EventEmitter
 
                     if(this.loadingContainer)
                     {
-                        gsap.to(this.loadingContainer, {
+                        gsap.to(this.loadingContainer, 
+                        {
                             duration: 0.5,
                             opacity: 0,
                             delay: 1,
@@ -106,9 +108,11 @@ export default class Ressources extends EventEmitter
             {
                 this.progressRatio = itemsLoaded / itemsTotal
                 
-                if(this.loadingBar)                {
+                if(this.loadingBar)                
+                {
                     this.loadingBar.style.transform = `scaleX(${this.progressRatio})`
                 }
+                
                 if(this.loadingPercentage)
                 {
                     const percentage = Math.round(this.progressRatio * 100)
@@ -148,13 +152,15 @@ export default class Ressources extends EventEmitter
                 {
                     this.sourceLoaded(source, file)
                 })
-            } else if(source.type === 'texture')
+            }
+            else if(source.type === 'texture')
             {
                 this.loaders.textureLoader.load(source.path, (file) =>
                 {
                     this.sourceLoaded(source, file)
                 })
-            } else if(source.type === 'cubeTexture')
+            }
+            else if(source.type === 'cubeTexture')
             {
                 this.loaders.cubeTextureLoader.load(source.path, (file) =>
                 {

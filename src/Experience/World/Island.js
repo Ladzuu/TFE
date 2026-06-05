@@ -48,21 +48,27 @@ export default class Island
         {
             this.audio.volume = 0.1
 
-            gsap.delayedCall(2, () => {
+            gsap.delayedCall(2, () => 
+            {
                 this.audio.play()
-                .then(() => {
+                .then(() => 
+                {
                     this.musicBtn.classList.add('isPlaying')
                 })
             })
 
-            this.musicBtn.addEventListener('click', () => {
+            this.musicBtn.addEventListener('click', () => 
+            {
                 if(this.audio.paused)
                 {
                     this.audio.play()
-                    .then(() => {
+                    .then(() => 
+                    {
                         this.musicBtn.classList.add('isPlaying')
                     })
-                } else {
+                }
+                else
+                {
                     this.audio.pause()
                     this.musicBtn.classList.remove('isPlaying')
                 }
@@ -74,7 +80,8 @@ export default class Island
     overlayLoading()
     {
         this.overlayGeometry = new THREE.PlaneGeometry(2, 2, 1, 1)
-        this.overlayMaterial = new THREE.ShaderMaterial({ 
+        this.overlayMaterial = new THREE.ShaderMaterial(
+        { 
             transparent: true,
             uniforms:
             {
@@ -131,11 +138,16 @@ export default class Island
                 if(child instanceof THREE.Mesh)
                 {
                     // Light materials
-                    if(child.name.startsWith('crystalEmission')) {
+                    if(child.name.startsWith('crystalEmission'))
+                    {
                         child.material = this.crystalLightMaterial
-                    } else if (child.name === 'waterEmissive') {
+                    }
+                    else if (child.name === 'waterEmissive') 
+                    {
                         child.material = this.waterLightMaterial
-                    } else {
+                    }
+                    else
+                    {
                         // Baked texture material
                         child.material = this.bakedMaterial
                     }
@@ -143,16 +155,22 @@ export default class Island
                     // Animated objects
                     child.baseY = child.position.y
 
-                    if(child.name.startsWith('crystalShard') || child.name === 'crystalCenter') {
+                    if(child.name.startsWith('crystalShard') || child.name === 'crystalCenter')
+                    {
                         this.crystals.push(child)
-                    } else if(child.name === 'pillar1' || child.name === 'pillar3' || child.name === 'pillar6' || child.name === 'pillar8' || child.name === 'pillar10') {
+                    }
+                    else if(child.name === 'pillar1' || child.name === 'pillar3' || child.name === 'pillar6' || child.name === 'pillar8' || child.name === 'pillar10')
+                    {
                         this.pillars.push(child)
-                    } else if(child.name.startsWith('rock')) {
+                    }
+                    else if(child.name.startsWith('rock'))
+                    {
                         this.rocks.push(child)
                     }
 
                     // Interactive objects
-                    if(["pillar1", "pillar3", "pillar4", "pillar6", "pillar8", "pillar9", "pillar10", "crystalCenter", "rock4", "rock5"].includes(child.name)) {
+                    if(["pillar1", "pillar3", "pillar4", "pillar6", "pillar8", "pillar9", "pillar10", "crystalCenter", "rock4", "rock5"].includes(child.name))
+                    {
                         child.material = this.glowMaterial
                         this.interactiveObjects.push(child)
                     }   
@@ -168,7 +186,8 @@ export default class Island
     {
         if(!this.glowMaterial) return
 
-        gsap.fromTo(this.glowMaterial.color, {
+        gsap.fromTo(this.glowMaterial.color,
+        {
             r: 0.8,
             g: 0.8,
             b: 0.8
@@ -192,13 +211,16 @@ export default class Island
         
         gsap.set(this.islandMessageItem, { opacity: 0, y: 30 })
         
-        gsap.to(this.islandMessageItem, {
+        gsap.to(this.islandMessageItem,
+        {
             opacity: 1,
             y: 0,
             duration: 1,
             ease: "power4.out",
-            onComplete: () => {
-                gsap.to(this.islandMessageItem, {
+            onComplete: () =>
+            {
+                gsap.to(this.islandMessageItem,
+                {
                     opacity: 0,
                     y: 30,
                     duration: 1,
@@ -241,7 +263,7 @@ export default class Island
             }
 
             // Raycasting
-            if (this.interactiveObjects && this.interactiveObjects.length > 0)
+            if(this.interactiveObjects && this.interactiveObjects.length > 0)
             {
                 this.raycasting.setFromCamera(this.experience.mouse, this.experience.camera.instance)
                 this.intersects = this.raycasting.intersectObjects(this.interactiveObjects)
@@ -250,18 +272,21 @@ export default class Island
                 if(this.intersects.length > 0)
                 {
                     document.body.style.cursor = 'pointer'
-                } else {
+                }
+                else
+                {
                     document.body.style.cursor = 'default'
                 }
 
                 // Object Hovered
                 const hoveredObject = this.intersects.length > 0 ? this.intersects[0].object : null
 
-                for (const object of this.interactiveObjects)
+                for(const object of this.interactiveObjects)
                 {
                     const isHovered = object === hoveredObject
 
-                    gsap.to(object.scale, {
+                    gsap.to(object.scale,
+                    {
                         x: isHovered ? 1.1 : 1,
                         y: isHovered ? 1.1 : 1,
                         z: isHovered ? 1.1 : 1,
@@ -270,7 +295,7 @@ export default class Island
                 }
 
                 // Message on click
-                if (this.experience.objClicked)
+                if(this.experience.objClicked)
                 {
                     if(hoveredObject)
                     {

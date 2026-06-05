@@ -38,7 +38,9 @@ export default class Camera
                 maxDistance: 120,
                 enablePan: true
             }
-        } else {
+        }
+        else
+        {
             this.cameraSettings = {
                 fov: 35,
                 position: new THREE.Vector3(27, 20, 22),
@@ -85,7 +87,8 @@ export default class Camera
             this.currentCamPosition = 0
             this.camAnimation = false
 
-        } else if(this.isIslandPage)
+        }
+        else if(this.isIslandPage)
         {
             this.camPositions = [
                 {
@@ -105,7 +108,8 @@ export default class Camera
             this.currentCamPosition = 0
             this.camAnimation = false
             
-        } else if(this.isVillagePage)
+        }
+        else if(this.isVillagePage)
         {
             this.camPositions = [
                 {
@@ -130,7 +134,8 @@ export default class Camera
     // Go to previous camera
     previousCamera()
     {
-        if (this.camAnimation) {
+        if(this.camAnimation)
+        {
             return
         }
         
@@ -142,7 +147,8 @@ export default class Camera
     // Go to next camera
     nextCamera()
     {
-        if (this.camAnimation) {
+        if(this.camAnimation)
+        {
             return
         }
         
@@ -157,16 +163,19 @@ export default class Camera
         this.targetPosition = this.camPositions[targetList].position
         this.targetLookAt = this.camPositions[targetList].lookAt
 
-        gsap.to(this.instance.position, {
+        gsap.to(this.instance.position,
+        {
             x: this.targetPosition.x,
             y: this.targetPosition.y,
             z: this.targetPosition.z,
             duration: 1.25,
             ease: "power2.inOut",
-            onUpdate: () => {
+            onUpdate: () =>
+            {
                 this.instance.lookAt(this.targetLookAt)
             },
-            onComplete: () => {
+            onComplete: () =>
+            {
                 this.currentCamPosition = targetList
                 this.camAnimation = false
             }
