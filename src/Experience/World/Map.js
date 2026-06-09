@@ -183,7 +183,7 @@ export default class Map
                     }
 
                     // Interactive objects
-                    if(child.name.startsWith('stage') || child.name.startsWith('slab') || child.name.startsWith('logCenter') || child.name.startsWith('woodBoxCenter') || child.name.startsWith('potCenter') || child.name === 'doorWood' || child.name.startsWith('ladder') || child.name.startsWith('wall') || child.name.startsWith('rockTemple') || child.name.startsWith('torch') || child.name.startsWith('templeSlab') || child.name === 'door' || child.name === 'island' || child.name.startsWith('pillar') || child.name.startsWith('rockIsland') || child.name === 'stele' || child.name.startsWith('crystalShard') || child.name === 'crystalCenter' || child.name.startsWith('altar'))
+                    if(child.name.startsWith('stage') || child.name.startsWith('slab') || child.name.startsWith('logCenter') || child.name.startsWith('woodBoxCenter') || child.name.startsWith('potCenter') || child.name === 'doorWood' || child.name.startsWith('ladder') || child.name.startsWith('wall') || child.name.startsWith('rockTemple') || child.name.startsWith('torch') || child.name.startsWith('templeSlab') || child.name === 'door' || child.name === 'island' || child.name.startsWith('pillar') || child.name.startsWith('rockIsland') || child.name === 'stele' || child.name.startsWith('crystalShard') || child.name === 'crystalCenter' || child.name.startsWith('altar') || child.name.startsWith('pyramid'))
                     {
                         child.material = this.glowMaterial
                         this.interactiveObjects.push(child)
@@ -280,6 +280,10 @@ export default class Map
                         else if(intersect.object.name === 'island')
                         {
                             window.location.href = 'island.html'
+                        }
+                        else if(intersect.object.name.startsWith('pyramid'))
+                        {
+                            window.location.href = 'pyramid.html'
                         }
                     })
 

@@ -1,4 +1,5 @@
 export default [
+    // Environment map
     {
         name: 'environmentMapTexture',
         type: 'cubeTexture',
@@ -12,6 +13,7 @@ export default [
             'textures/environmentMap/nz.jpg'
         ]
     },
+    // Temple assets
     {
         name: 'templeModel',
         type: 'gltfModel',
@@ -22,6 +24,7 @@ export default [
         type: 'texture',
         path: 'textures/temple/templeTexture.jpg'
     },
+    // Island assets
     {
         name: 'godIsland',
         type: 'gltfModel',
@@ -32,6 +35,7 @@ export default [
         type: 'texture',
         path: 'textures/island/bakedIsland.jpg'
     },
+    // Village assets
     {
         name: 'villageModel',
         type: 'gltfModel',
@@ -42,6 +46,18 @@ export default [
         type: 'texture',
         path: 'textures/village/bakedVillage.jpg'
     },
+    // Pyramid assets
+    {
+        name: 'pyramidModel',
+        type: 'gltfModel',
+        path: 'models/pyramid/pyramidResonance.glb'
+    },
+    {
+        name: 'pyramidTexture',
+        type: 'texture',
+        path: 'textures/pyramid/bakedPyramid.jpg'
+    },
+    // Map assets
     {
         name: 'mapModel',
         type: 'gltfModel',

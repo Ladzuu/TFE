@@ -25,6 +25,7 @@ export default class Camera
         this.isTemplePage = canvas && canvas.classList.contains('model__temple')
         this.isIslandPage = canvas && canvas.classList.contains('model__island')
         this.isVillagePage = canvas && canvas.classList.contains('model__village')
+        this.isPyramidPage = canvas && canvas.classList.contains('model__pyramid')
 
         if(this.isMapPage)
         {
@@ -110,6 +111,26 @@ export default class Camera
             
         }
         else if(this.isVillagePage)
+        {
+            this.camPositions = [
+                {
+                    position: new THREE.Vector3(27, 20, 22),
+                    lookAt: new THREE.Vector3(0, 0, 0)
+                },
+                {
+                    position: new THREE.Vector3(20, 15, -26),
+                    lookAt: new THREE.Vector3(0, 0, 0)
+                },
+                { 
+                    position: new THREE.Vector3(-24, 14, -10),
+                    lookAt: new THREE.Vector3(0, 0, 0)
+                }
+            ]
+
+            this.currentCamPosition = 0
+            this.camAnimation = false
+        }
+        else if(this.isPyramidPage)
         {
             this.camPositions = [
                 {

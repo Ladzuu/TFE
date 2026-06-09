@@ -3,6 +3,7 @@ import Environment from './Environment.js'
 import Temple from './Temple.js'
 import Island from './Island.js'
 import Village from './Village.js'
+import Pyramid from './Pyramid.js'
 import Map from './Map.js'
 
 export default class World
@@ -34,6 +35,10 @@ export default class World
             {
                 this.village = new Village()
             }
+            else if(canvas && canvas.classList.contains('model__pyramid'))
+            {
+                this.pyramid = new Pyramid()
+            }
 
             this.environment = new Environment()
         })
@@ -60,6 +65,11 @@ export default class World
         if(this.village)
         {
             this.village.update()
+        }
+
+        if(this.pyramid)
+        {
+            this.pyramid.update()
         }
     }
 }
