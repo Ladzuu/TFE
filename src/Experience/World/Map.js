@@ -44,6 +44,7 @@ export default class Map
 
         if(this.audio && this.musicBtn)
         {
+            this.musicBtn.style.cursor = 'pointer'
             this.audio.volume = 0.05
 
             gsap.delayedCall(2.5, () =>

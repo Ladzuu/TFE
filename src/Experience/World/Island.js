@@ -46,6 +46,7 @@ export default class Island
 
         if(this.audio && this.musicBtn)
         {
+            this.musicBtn.style.cursor = 'pointer'
             this.audio.volume = 0.1
 
             gsap.delayedCall(2, () => 
@@ -193,9 +194,9 @@ export default class Island
             b: 0.8
         }, 
         {
-            r: 2.5,
-            g: 2,
-            b: 1.2,
+            r: 1.2,
+            g: 0.8,
+            b: 0.2,
             duration: 1.5,
             repeat: -1,
             yoyo: true,
@@ -287,9 +288,9 @@ export default class Island
 
                     gsap.to(object.scale,
                     {
-                        x: isHovered ? 1.1 : 1,
-                        y: isHovered ? 1.1 : 1,
-                        z: isHovered ? 1.1 : 1,
+                        x: isHovered ? 1.2 : 1,
+                        y: isHovered ? 1.2 : 1,
+                        z: isHovered ? 1.2 : 1,
                         duration: 0.3
                     })
                 }

@@ -46,6 +46,7 @@ export default class Pyramid
 
         if(this.audio && this.musicBtn)
         {
+            this.musicBtn.style.cursor = 'pointer'
             this.audio.volume = 0.1
 
             gsap.delayedCall(2, () =>

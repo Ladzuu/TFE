@@ -25,7 +25,8 @@ export default {
                 temple: resolve(__dirname, 'src/temple.html'),
                 island: resolve(__dirname, 'src/island.html'),
                 village: resolve(__dirname, 'src/village.html'),
-                credits: resolve(__dirname, 'src/credits.html')
+                credits: resolve(__dirname, 'src/credits.html'),
+                pyramid: resolve(__dirname, 'src/pyramid.html')
             }
         }
     },

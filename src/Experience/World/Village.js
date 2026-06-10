@@ -46,6 +46,7 @@ export default class Village
 
         if(this.audio && this.musicBtn)
         {
+            this.musicBtn.style.cursor = 'pointer'
             this.audio.volume = 0.1
 
             gsap.delayedCall(2, () =>
@@ -175,7 +176,7 @@ export default class Village
         {
             r: 2.5,
             g: 2,
-            b: 1.2,
+            b: 1.8,
             duration: 1.5,
             repeat: -1,
             yoyo: true,
