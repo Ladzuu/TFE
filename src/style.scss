@@ -296,7 +296,7 @@ body {
 
 #main,
 #credits {
-    scroll-margin-top: 240px;
+    scroll-margin-top: 280px;
 }
 
 .main {
@@ -327,6 +327,12 @@ body {
             max-width: 400px;
             height: auto;
             padding-bottom: 120px;
+
+            &--canvasStart,
+            &--canvasMid,
+            &--canvasEnd {
+                margin: 0;
+            }
 
             &--text {
                 font-family: var(--dialogues);
@@ -851,6 +857,7 @@ body {
 
     .logo__site {
         width: 80px;
+        cursor: none;
     }
 
     .cursor__center {

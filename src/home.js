@@ -325,6 +325,9 @@ gsap.from('.credits__box',
 })
 
 // ------- DECORATION HOME -------
+
+/* HEADER */
+
 const canvas = document.querySelector('.section__hero--canvas')
 const scene = new THREE.Scene()
 
@@ -364,6 +367,94 @@ function animateHeader()
     renderer.render(scene, camera)
 }
 animateHeader()
+
+/* MAIN */
+
+const storyMaterial = new THREE.MeshBasicMaterial({ color: 0xff7e46, wireframe: true })
+
+// Canvas Start
+const canvasStoryStart = document.querySelector('.context__content--canvasStart')
+if(canvasStoryStart)
+{
+    const sceneStart = new THREE.Scene()
+    const cameraStart = new THREE.PerspectiveCamera(45, 1, 0.1, 100)
+    cameraStart.position.z = 4
+    const rendererStoryStart = new THREE.WebGLRenderer({ canvas: canvasStoryStart, antialias: true, alpha: true })
+    rendererStoryStart.setSize(200, 200)
+
+    const geometryStoryStart = new THREE.TetrahedronGeometry()
+    const pyramidStory = new THREE.Mesh(geometryStoryStart, storyMaterial)
+    sceneStart.add(pyramidStory)
+
+    function animateStoryStart () 
+    {
+        requestAnimationFrame(animateStoryStart)
+
+        pyramidStory.rotation.x += 0.008
+        pyramidStory.rotation.y += 0.008
+        pyramidStory.rotation.z += 0.008
+
+        rendererStoryStart.render(sceneStart, cameraStart)
+    }
+
+    animateStoryStart()
+}
+
+// Canvas Mid
+const canvasStoryMid = document.querySelector('.context__content--canvasMid')
+if(canvasStoryMid)
+{
+    const sceneMid = new THREE.Scene()
+    const cameraMid= new THREE.PerspectiveCamera(45, 1, 0.1, 100)
+    cameraMid.position.z = 4
+    const rendererStoryMid = new THREE.WebGLRenderer({ canvas: canvasStoryMid, antialias: true, alpha: true })
+    rendererStoryMid.setSize(200, 200)
+
+    const geometryStoryMid = new THREE.IcosahedronGeometry()
+    const crystalStory = new THREE.Mesh(geometryStoryMid, storyMaterial)
+    sceneMid.add(crystalStory)
+
+    function animateStoryMid () 
+    {
+        requestAnimationFrame(animateStoryMid)
+
+        crystalStory.rotation.x += 0.008
+        crystalStory.rotation.y += 0.008
+        crystalStory.rotation.z += 0.008
+
+        rendererStoryMid.render(sceneMid, cameraMid)
+    }
+
+    animateStoryMid()
+}
+
+// Canvas End
+const canvasStoryEnd = document.querySelector('.context__content--canvasEnd')
+if(canvasStoryEnd)
+{
+    const sceneEnd = new THREE.Scene()
+    const cameraEnd = new THREE.PerspectiveCamera(45, 1, 0.1, 100)
+    cameraEnd.position.z = 4
+    const rendererStoryEnd = new THREE.WebGLRenderer({ canvas: canvasStoryEnd, antialias: true, alpha: true })
+    rendererStoryEnd.setSize(200, 200)
+
+    const geometryStoryEnd = new THREE.BoxGeometry(1.2, 1.2, 1.2)
+    const cubeStory = new THREE.Mesh(geometryStoryEnd, storyMaterial)
+    sceneEnd.add(cubeStory)
+
+    function animateStoryEnd ()
+    {
+        requestAnimationFrame(animateStoryEnd)
+
+        cubeStory.rotation.x += 0.008
+        cubeStory.rotation.y += 0.008
+        cubeStory.rotation.z += 0.008
+
+        rendererStoryEnd.render(sceneEnd, cameraEnd)
+    }
+
+    animateStoryEnd()
+}
 
 // ------- DECORATION CREDITS -------
 
