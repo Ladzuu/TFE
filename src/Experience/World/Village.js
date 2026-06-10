@@ -149,7 +149,7 @@ export default class Village
                     this.interactiveObjects = []
                     this.model.traverse((child) =>
                     {
-                        if(["pot1", "pot2", "pot3", "pot6", "pot7", "pot8", "pot9", "pot10", "doorWood", "woodBox1", "woodBox2"].includes(child.name))
+                        if(["pot1", "pot2", "pot3", "pot4", "pot6", "pot7", "pot8", "pot9", "pot10", "woodBox1", "woodBox2"].includes(child.name))
                         {
                             child.material = this.glowMaterial
                             this.interactiveObjects.push(child)
@@ -267,6 +267,9 @@ export default class Village
                             case "pot3":
                                 this.textAppear("Ce pot est plein d'objets en tous genres.\nAucun n'a de valeur...")
                                 break
+                            case "pot4":
+                                this.textAppear("Une maison au milieu du désert...\nÀ qui peut elle bien appartenir ?")
+                                break
                             case "pot6":
                                 this.textAppear("Il y a de la lumière à l'intérieur.\nPourtant il n'y a personne ici...")
                                 break
@@ -281,9 +284,6 @@ export default class Village
                                 break
                             case "pot10":
                                 this.textAppear("Anoth et Kahaz en parlaient...\nCes cristaux viendraient de la catastrophe.")
-                                break
-                            case "doorWood":
-                                this.textAppear("Une maison au milieu du désert...\nÀ qui peut elle bien appartenir ?")
                                 break
                             case "woodBox1":
                                 this.textAppear("Cette caisse est enfoncée dans le sol.\nCe lieu a bel et bien l'air abandonné.")

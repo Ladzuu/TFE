@@ -766,6 +766,8 @@ body {
 
     .sceneText {
         bottom: 60px;
+        width: 400px;
+        font-size: var(--bigText-sizeMb);
     }
 
     .nav__mb {
@@ -909,9 +911,8 @@ body {
     }
 
     .sceneText {
-        width: 400px;
+        width: 500px;
         bottom: 80px;
-        font-size: var(--text-sizeDt);
     }
 
     .templeUI__switchCam {

@@ -258,13 +258,13 @@ export default class Pyramid
                         switch (hoveredObject.name)
                         {
                             case "pyramidCenter":
-                                this.textAppear("Quelle intense lumière... Impossible de voir au travers.\nQui sait ce qu'il y a derrière cette porte ?")
+                                this.textAppear("Ces pyramides sont là depuis des milliers d'années.\nElles sont de plus en plus enfouies dans le sable...")
                                 break
                             case "pyramidRight":
-                                this.textAppear("Cette stèle a l'air plus vieille que les autres.\nLa lumière semble s'affaiblir. Étrange...")
+                                this.textAppear("La guerre de Seth... Tout est parti de là.\nDes cristaux magiques poussent du sol de part et d'autre.")
                                 break
                             case "pyramidLeft":
-                                this.textAppear("Les flammes n'arrêtent pas de bouger.\nOn jurerait que quelque chose veut en sortir.")
+                                this.textAppear("Si seulement les pyramides pouvaient redevenir comme avant.\nOsiris en est le seul capable.")
                                 break
                         }
                     }
